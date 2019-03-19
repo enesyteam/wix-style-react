@@ -17,7 +17,7 @@ const HeaderLayout = ({ title, onCancel, theme, closeButton }) => {
         <CloseButton
           dataHook="header-close-button"
           size="medium"
-          skin="lightFilled"
+          skin={theme === 'white' ? 'dark' : 'lightFilled'}
           onClick={onCancel}
         />
       ) : null}
@@ -34,7 +34,7 @@ HeaderLayout.propTypes = {
   title: PropTypes.node,
   onCancel: PropTypes.func,
   closeButton: PropTypes.bool,
-  theme: PropTypes.oneOf(['red', 'green', 'blue', 'lightGreen']),
+  theme: PropTypes.oneOf(['red', 'green', 'blue', 'lightGreen', 'white']),
 };
 
 export default HeaderLayout;
