@@ -63,9 +63,9 @@ MultiSelectTests.add(testStories.selectMode, () => (
 
 MultiSelectTests.add(testStories.tabsSwitches, () => (
   <div>
-    <input data-hook="input-for-focus-1" />
-    <TestTabsSwitches />
-    <input data-hook="input-for-focus-2" />
+    <input data-hook="input-for-focus-1"/>
+    <TestTabsSwitches/>
+    <input data-hook="input-for-focus-2"/>
   </div>
 ));
 

@@ -37,10 +37,7 @@ const rangeTestkitE2EFactory = rangeDriver => {
 };
 
 describe('Range', () => {
-  const storyUrl = createStoryUrl({
-    kind: settings.kind,
-    story: settings.storyName,
-  });
+  const storyUrl = createStoryUrl({ kind: settings.kind, story: settings.storyName });
 
   const driverInput = rangeTestkitE2EFactory(
     rangeTestkitFactory({ dataHook: settings.dataHookInput }),
