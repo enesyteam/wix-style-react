@@ -41,7 +41,7 @@ class MessageBoxMarketerialLayout extends WixComponent {
               dataHook="close-button"
               size="medium"
               onClick={onClose}
-              skin={theme === "white"? "dark" : "lightFilled"}
+              skin={theme === 'white' ? 'dark' : 'lightFilled'}
             />
           </div>
           {imageComponent ? (

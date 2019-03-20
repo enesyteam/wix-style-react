@@ -101,7 +101,7 @@ describe('MessageBoxMarketerialLayout', () => {
 
     it(`should theme the close button as dark when general theme is white`, () => {
       const props = Object.assign({}, requiredProps, {
-        theme: 'white'
+        theme: 'white',
       });
       const driver = createDriver(<MessageBoxMarketerialLayout {...props} />);
       expect(driver.getHeaderCloseButton().className).toContain('dark');
