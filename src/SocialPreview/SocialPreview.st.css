@@ -1,0 +1,35 @@
+@namespace "SocialPreview";
+
+:import {
+  -st-from: '../Text/Text.st.css';
+  -st-default: Text;
+};
+
+.root {
+  width: 342px;
+  border: solid 1px #dfe5eb;
+  background-color: #f0f4f7;
+  height: 210px;
+}
+.container {
+  padding: 9px 12px 9px 12px;
+}
+.root .socialPreviewUrl {
+  -st-extends: Text;
+  color: #7a92a5;
+}
+
+.root .socialPreviewTitle {
+  -st-extends: Text;
+  color: #162d3d;
+}
+
+
+.root .socialPreviewDescription {
+  -st-extends: Text;
+  color: #32536a;
+
+}
+.imageViewer {
+  border-radius: 0; 
+}
