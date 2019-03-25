@@ -133,6 +133,7 @@ require('../src/Text/docs/index.story');
 require('../src/Thumbnail/docs/index.story');
 require('./Dropdown/Dropdown.story');
 require('./MultiSelect/index.story');
+require('../src/SocialPreview/docs/index.story.js');
 
 // Styling
 require('../src/Typography/docs/cssClasses.story');

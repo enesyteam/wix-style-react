@@ -164,3 +164,9 @@ import { accordionDriverFactory } from '../src/Accordion/Accordion.driver';
 export const accordionTestkitFactory = puppeteerUniTestkitFactoryCreator(
   accordionDriverFactory,
 );
+
+import { socialPreviewDriverFactory } from '../src/SocialPreview/SocialPreview.uni.driver';
+
+export const socialPreviewTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  socialPreviewDriverFactory,
+);
