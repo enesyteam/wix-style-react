@@ -11,7 +11,7 @@ import {
   code as baseCode,
   playground,
   api,
-  testkit
+  testkit,
 } from 'wix-storybook-utils/Sections';
 
 import { storySettings } from '../test/storySettings';
@@ -42,7 +42,7 @@ export default {
       issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
       sourceUrl:
         'https://github.com/wix/wix-style-react/tree/master/src/SocialPreview/',
-      component: <SocialPreview buttonText="Click me!"/>
+      component: <SocialPreview buttonText="Click me!" />,
     }),
 
     tabs([
@@ -52,12 +52,15 @@ export default {
           columns([
             description({
               title: 'Description',
-              text: 'This line here should briefly describe component in just a sentence or two. It should be short and easy to read.'
+              text:
+                'This line here should briefly describe component in just a sentence or two. It should be short and easy to read.',
             }),
           ]),
 
           columns([
-            importExample("import SocialPreview from 'wix-style-react/SocialPreview'"),
+            importExample(
+              "import SocialPreview from 'wix-style-react/SocialPreview'",
+            ),
           ]),
 
           divider(),
@@ -67,27 +70,27 @@ export default {
           columns([
             description({
               title: 'Simple Usage',
-              text: 'A simple example with compact preview'
+              text: 'A simple example with compact preview',
             }),
             code({
               compact: true,
-              source: '<SocialPreview buttonText="Hello World!"/>'
-            })
+              source: '<SocialPreview buttonText="Hello World!"/>',
+            }),
           ]),
 
           code({
             title: 'Full Interactive Preview',
             description: 'A non compact version of same code example as above',
-            source: '<SocialPreview buttonText="Hello World!"/>'
-          })
-        ]
+            source: '<SocialPreview buttonText="Hello World!"/>',
+          }),
+        ],
       }),
 
       ...[
         { title: 'API', sections: [api()] },
         { title: 'Testkit', sections: [testkit()] },
         { title: 'Playground', sections: [playground()] },
-      ].map(tab)
-    ])
+      ].map(tab),
+    ]),
   ],
 };

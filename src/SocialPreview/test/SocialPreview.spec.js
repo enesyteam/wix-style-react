@@ -28,9 +28,7 @@ describe('SocialPreview', () => {
   });
 
   it('should allow changing the button text', async () => {
-    const driver = createDriver(
-      <SocialPreview buttonText="Press me" />,
-    );
+    const driver = createDriver(<SocialPreview buttonText="Press me" />);
 
     expect(await driver.getButtonText()).toEqual('Press me');
   });

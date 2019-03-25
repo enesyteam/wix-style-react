@@ -6,7 +6,7 @@ import Text from '../Text';
 import Button from '../Button';
 
 /**
- * A displayer for a social post 
+ * A displayer for a social post
  */
 class SocialPreview extends React.PureComponent {
   static displayName = 'SocialPreview';
@@ -43,10 +43,7 @@ class SocialPreview extends React.PureComponent {
         </Text>
 
         <div className={styles.button}>
-          <Button
-            onClick={this._handleClick}
-            dataHook="socialPreview-button"
-          >
+          <Button onClick={this._handleClick} dataHook="socialPreview-button">
             {buttonText}
           </Button>
         </div>

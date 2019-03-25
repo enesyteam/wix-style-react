@@ -9,8 +9,5 @@ const TestStories = storiesOf(getTestStoryKind(storySettings), module);
 const { testStoryNames, dataHook } = storySettings;
 
 TestStories.add(testStoryNames.DEFAULT, () => (
-  <SocialPreview
-    dataHook={dataHook}
-    buttonText="Press me for a surprise"
-  />
+  <SocialPreview dataHook={dataHook} buttonText="Press me for a surprise" />
 ));
