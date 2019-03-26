@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './TooltipNext.scss';
 
 import Text from '../../Text';
 import Button from '../../Button';
@@ -8,8 +7,8 @@ import Button from '../../Button';
 /**
  * Next Tooltip
  */
-class TooltipNext extends React.PureComponent {
-  static displayName = 'TooltipNext';
+class Tooltip extends React.PureComponent {
+  static displayName = 'Tooltip';
 
   static propTypes = {
     dataHook: PropTypes.string,
@@ -37,12 +36,12 @@ class TooltipNext extends React.PureComponent {
     const { dataHook, buttonText } = this.props;
 
     return (
-      <div className={styles.root} data-hook={dataHook}>
+      <div data-hook={dataHook}>
         <Text dataHook="tooltipNext-count">
           You clicked this button {count} times
         </Text>
 
-        <div className={styles.button}>
+        <div>
           <Button onClick={this._handleClick} dataHook="tooltipNext-button">
             {buttonText}
           </Button>
@@ -52,4 +51,4 @@ class TooltipNext extends React.PureComponent {
   }
 }
 
-export default TooltipNext;
+export default Tooltip;

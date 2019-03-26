@@ -17,15 +17,15 @@ import {
 import { storySettings } from '../test/storySettings';
 import allComponents from '../../../../stories/utils/allComponents';
 
-import TooltipNext from '..';
+import Tooltip from '..';
 
 const code = config => baseCode({ components: allComponents, ...config });
 
 export default {
   category: storySettings.category,
-  storyName: 'TooltipNext',
+  storyName: 'Tooltip',
 
-  component: TooltipNext,
+  component: Tooltip,
   componentPath: '..',
 
   componentProps: {
@@ -42,7 +42,7 @@ export default {
       issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
       sourceUrl:
         'https://github.com/wix/wix-style-react/tree/master/src/TooltipNext/',
-      component: <TooltipNext buttonText="Click me!" />,
+      component: <Tooltip buttonText="Click me!" />,
     }),
 
     tabs([

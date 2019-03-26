@@ -2,7 +2,7 @@ import { Category } from '../../../../stories/storiesHierarchy';
 
 export const storySettings = {
   category: Category.WIP,
-  storyName: 'TooltipNext',
+  storyName: 'Tooltip',
   dataHook: 'story-tooltip-next',
   testStoryNames: {
     DEFAULT: 'Default',

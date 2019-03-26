@@ -1,6 +1,6 @@
 import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
 
-export const tooltipNextDriverFactory = base => {
+export const tooltipDriverFactory = base => {
   return {
     ...baseUniDriverFactory(base),
 

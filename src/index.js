@@ -120,3 +120,4 @@ export { default as DateInput } from './DateInput';
 export { default as EditableTitle } from './EditableTitle';
 export { default as Accordion } from './Accordion';
 export { default as GooglePreview } from './GooglePreview';
+export { default as TooltipNext } from './Tooltip/TooltipNext';

@@ -1,25 +1,28 @@
 import React from 'react';
-import { createRendererWithUniDriver, cleanup } from '../../../test/utils/unit';
+import {
+  createRendererWithUniDriver,
+  cleanup,
+} from '../../../../test/utils/unit';
 
-import TooltipNext from '../TooltipNext';
-import { tooltipNextPrivateDriverFactory } from './TooltipNext.private.uni.driver';
+import Tooltip from '../Tooltip';
+import { tooltipPrivateDriverFactory } from './Tooltip.private.uni.driver';
 
-describe('TooltipNext', () => {
-  const render = createRendererWithUniDriver(tooltipNextPrivateDriverFactory);
+describe('Tooltip', () => {
+  const render = createRendererWithUniDriver(tooltipPrivateDriverFactory);
 
   afterEach(() => {
     cleanup();
   });
 
   it('should render', async () => {
-    const { driver } = render(<TooltipNext />);
+    const { driver } = render(<Tooltip />);
 
     expect(await driver.exists()).toBeTruthy();
     expect(await driver.getButtonText()).toEqual('Click me!');
   });
 
   it('should increment', async () => {
-    const { driver } = render(<TooltipNext />);
+    const { driver } = render(<Tooltip />);
 
     await driver.clickButton();
     await driver.clickButton();
@@ -30,7 +33,7 @@ describe('TooltipNext', () => {
   });
 
   it('should allow changing the button text', async () => {
-    const { driver } = render(<TooltipNext buttonText="Press me" />);
+    const { driver } = render(<Tooltip buttonText="Press me" />);
 
     expect(await driver.getButtonText()).toEqual('Press me');
   });

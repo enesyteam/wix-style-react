@@ -1,1 +1,1 @@
-export { default } from './TooltipNext.js';
+export { default } from './Tooltip.js';
