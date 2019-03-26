@@ -13,7 +13,6 @@ class SocialPreview extends React.PureComponent {
 
   static propTypes = {
     dataHook: PropTypes.string,
-    size: PropTypes.oneOf(['small', 'large']),
     title: PropTypes.string,
     description: PropTypes.string,
     previewUrl: PropTypes.string,
@@ -21,7 +20,6 @@ class SocialPreview extends React.PureComponent {
   };
 
   static defaultProps = {
-    size: 'large',
     title: 'Click me!',
     description: 'A description for the displayed item',
     previewUrl: 'www.site-name.com',
@@ -37,6 +35,7 @@ class SocialPreview extends React.PureComponent {
           {...imageViewerProps}
           width="100%"
           height="144px"
+          dataHook="socialPreview-imageViewer"
         />
         <div className={style.container}>
           <div>

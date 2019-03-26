@@ -1,19 +1,21 @@
 import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
+import { imageViewerTestkitFactory as enzymeImageViewerTestkitFactory } from '../../testkit/enzyme';
+import { mount } from 'enzyme';
 
 export const socialPreviewDriverFactory = base => {
   return {
     ...baseUniDriverFactory(base),
+    /** Get SocialPreview title **/
+    getTitle: async () => base.$('[data-hook="socialPreview-title"]').text(),
 
-    /** Get the current count */
-    getCountText: async () =>
-      base.$('[data-hook="socialPreview-count"]').text(),
+    /** Get SocialPreview url **/
+    getPreviewUrl: async () => base.$('[data-hook="socialPreview-url"]').text(),
 
-    /** Click the button */
-    clickButton: async () =>
-      base.$('[data-hook="socialPreview-button"]').click(),
+    /** Get SocialPreview description **/
+    getDescription: async () =>
+      base.$('[data-hook="socialPreview-description"]').text(),
 
-    /** Get the button's text */
-    getButtonText: async () =>
-      base.$('[data-hook="socialPreview-button"]').text(),
+    getImageViewer: async () =>
+      base.$('[data-hook="socialPreview-imageViewer"]'),
   };
 };
