@@ -1,17 +1,9 @@
-import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
+import { testkit } from 'wix-ui-core/dist/src/components/popover/Popover.uni.driver';
 
-export const tooltipDriverFactory = base => {
+export const tooltipDriverFactory = (base, body) => {
+  const { exists, click } = testkit(base, body);
   return {
-    ...baseUniDriverFactory(base),
-
-    /** Get the current count */
-    getCountText: async () => base.$('[data-hook="tooltipNext-count"]').text(),
-
-    /** Click the button */
-    clickButton: async () => base.$('[data-hook="tooltipNext-button"]').click(),
-
-    /** Get the button's text */
-    getButtonText: async () =>
-      base.$('[data-hook="tooltipNext-button"]').text(),
+    exists: () => exists(),
+    click: () => click(),
   };
 };

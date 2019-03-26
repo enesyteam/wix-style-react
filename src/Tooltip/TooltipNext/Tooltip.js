@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Text from '../../Text';
-import Button from '../../Button';
+import { Popover } from 'wix-ui-core/popover';
+import styles from './Tooltip.st.css';
 
 /**
  * Next Tooltip
@@ -12,41 +12,22 @@ class Tooltip extends React.PureComponent {
 
   static propTypes = {
     dataHook: PropTypes.string,
-
-    /** Text for the button */
-    buttonText: PropTypes.string,
+    children: PropTypes.node.isRequired,
+    content: PropTypes.node,
   };
 
   static defaultProps = {
-    buttonText: 'Click me!',
-  };
-
-  state = {
-    count: 0,
-  };
-
-  _handleClick = () => {
-    this.setState(({ count }) => ({
-      count: count + 1,
-    }));
+    content: '',
   };
 
   render() {
-    const { count } = this.state;
-    const { dataHook, buttonText } = this.props;
+    const { children, content, ...rest } = this.props;
 
     return (
-      <div data-hook={dataHook}>
-        <Text dataHook="tooltipNext-count">
-          You clicked this button {count} times
-        </Text>
-
-        <div>
-          <Button onClick={this._handleClick} dataHook="tooltipNext-button">
-            {buttonText}
-          </Button>
-        </div>
-      </div>
+      <Popover {...rest} {...styles('root', {}, this.props)}>
+        <Popover.Element>{children}</Popover.Element>
+        <Popover.Content>{content}</Popover.Content>
+      </Popover>
     );
   }
 }

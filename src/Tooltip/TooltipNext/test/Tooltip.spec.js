@@ -7,6 +7,8 @@ import {
 import Tooltip from '../Tooltip';
 import { tooltipPrivateDriverFactory } from './Tooltip.private.uni.driver';
 
+import Button from '../../../Button';
+
 describe('Tooltip', () => {
   const render = createRendererWithUniDriver(tooltipPrivateDriverFactory);
 
@@ -15,26 +17,11 @@ describe('Tooltip', () => {
   });
 
   it('should render', async () => {
-    const { driver } = render(<Tooltip />);
-
-    expect(await driver.exists()).toBeTruthy();
-    expect(await driver.getButtonText()).toEqual('Click me!');
-  });
-
-  it('should increment', async () => {
-    const { driver } = render(<Tooltip />);
-
-    await driver.clickButton();
-    await driver.clickButton();
-
-    expect(await driver.getCountText()).toEqual(
-      'You clicked this button 2 times',
+    const { driver } = render(
+      <Tooltip>
+        <Button>content</Button>
+      </Tooltip>,
     );
-  });
-
-  it('should allow changing the button text', async () => {
-    const { driver } = render(<Tooltip buttonText="Press me" />);
-
-    expect(await driver.getButtonText()).toEqual('Press me');
+    expect(await driver.exists()).toBeTruthy();
   });
 });
