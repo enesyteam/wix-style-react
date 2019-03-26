@@ -29,12 +29,20 @@ export default {
   componentPath: '..',
 
   componentProps: {
-    buttonText: 'Hello World!',
+    dataHook: storySettings.dataHook,
+    title: 'Site Name | a title of your site',
+    description: 'A short description for a site',
+    previewUrl: 'www.site-name.com',
   },
 
   exampleProps: {
-    // Put here presets of props, for more info:
-    // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
+    title: 'Site Name | a title of your site',
+    description: 'A short description for a site',
+    previewUrl: 'www.site-name.com',
+    imageViewerProps: {
+      imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/d/dd/New_Mela_Ramanputhur_Holy_Family_Church.jpg',
+    },
   },
 
   sections: [
@@ -42,7 +50,7 @@ export default {
       issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
       sourceUrl:
         'https://github.com/wix/wix-style-react/tree/master/src/SocialPreview/',
-      component: <SocialPreview buttonText="Click me!" />,
+      component: <SocialPreview />,
     }),
 
     tabs([
@@ -52,8 +60,7 @@ export default {
           columns([
             description({
               title: 'Description',
-              text:
-                'This line here should briefly describe component in just a sentence or two. It should be short and easy to read.',
+              text: 'A displayer for social post.',
             }),
           ]),
 
@@ -65,23 +72,11 @@ export default {
 
           divider(),
 
-          title('Examples'),
-
-          columns([
-            description({
-              title: 'Simple Usage',
-              text: 'A simple example with compact preview',
-            }),
-            code({
-              compact: true,
-              source: '<SocialPreview buttonText="Hello World!"/>',
-            }),
-          ]),
-
           code({
             title: 'Full Interactive Preview',
             description: 'A non compact version of same code example as above',
-            source: '<SocialPreview buttonText="Hello World!"/>',
+            source: `<SocialPreview title='Site Name | a title of you site'
+    description='A short description for a site' previewUrl='www.site-name.com' imageViewerProps={{imageUrl:'https://upload.wikimedia.org/wikipedia/commons/d/dd/New_Mela_Ramanputhur_Holy_Family_Church.jpg'}}/>;`,
           }),
         ],
       }),
