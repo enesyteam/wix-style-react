@@ -5,12 +5,10 @@ export const tooltipNextDriverFactory = base => {
     ...baseUniDriverFactory(base),
 
     /** Get the current count */
-    getCountText: async () =>
-      base.$('[data-hook="tooltipNext-count"]').text(),
+    getCountText: async () => base.$('[data-hook="tooltipNext-count"]').text(),
 
     /** Click the button */
-    clickButton: async () =>
-      base.$('[data-hook="tooltipNext-button"]').click(),
+    clickButton: async () => base.$('[data-hook="tooltipNext-button"]').click(),
 
     /** Get the button's text */
     getButtonText: async () =>

@@ -9,8 +9,5 @@ const TestStories = storiesOf(getTestStoryKind(storySettings), module);
 const { testStoryNames, dataHook } = storySettings;
 
 TestStories.add(testStoryNames.DEFAULT, () => (
-  <TooltipNext
-    dataHook={dataHook}
-    buttonText="Press me for a surprise"
-  />
+  <TooltipNext dataHook={dataHook} buttonText="Press me for a surprise" />
 ));

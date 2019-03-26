@@ -5,9 +5,7 @@ import TooltipNext from '../TooltipNext';
 import { tooltipNextPrivateDriverFactory } from './TooltipNext.private.uni.driver';
 
 describe('TooltipNext', () => {
-  const render = createRendererWithUniDriver(
-    tooltipNextPrivateDriverFactory,
-  );
+  const render = createRendererWithUniDriver(tooltipNextPrivateDriverFactory);
 
   afterEach(() => {
     cleanup();
