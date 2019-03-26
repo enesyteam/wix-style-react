@@ -33,7 +33,7 @@ export default {
       sourceUrl:
         'https://github.com/wix/wix-style-react/tree/master/src/TooltipNext/',
       component: (
-        <Tooltip content="HERE I AM! THIS IS ME!">
+        <Tooltip appendTo="window" content="HERE I AM! THIS IS ME!">
           <Button>Hover me!</Button>
         </Tooltip>
       ),
