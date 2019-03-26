@@ -25,6 +25,10 @@ export default {
   componentProps: {
     children: <Button>Hover me for a tooltip!</Button>,
     content: 'HERE I AM! THIS IS ME!',
+    appendTo: 'parent',
+    placement: 'top',
+    enterDelay: 200,
+    exitDelay: 0,
   },
 
   sections: [

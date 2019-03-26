@@ -26,6 +26,8 @@ class Tooltip extends React.PureComponent {
     content: '',
     appendTo: 'parent',
     placement: 'top',
+    enterDelay: 200,
+    exitDelay: 0,
     onShow: () => ({}),
     onHide: () => ({}),
   };
@@ -40,22 +42,39 @@ class Tooltip extends React.PureComponent {
     this.setState({ isOpen: false }, () => onHide());
   };
 
-  render() {
-    const { children, content, appendTo, placement, dataHook } = this.props;
-    const { isOpen } = this.state;
+  keyDown = e => {
+    if (e.key === 'Escape') {
+      this.setState({ isOpen: false });
+    }
+  };
 
+  render() {
+    const {
+      children,
+      content,
+      appendTo,
+      placement,
+      exitDelay,
+      enterDelay,
+      dataHook,
+    } = this.props;
+    const { isOpen } = this.state;
+    const timeout = { enter: enterDelay, exit: exitDelay };
     return (
       <Popover
         {...styles('root', {}, this.props)}
         dataHook={dataHook}
         placement={placement}
         showArrow
+        timeout={timeout}
         shown={isOpen}
         onMouseEnter={this.open}
         onMouseLeave={this.close}
         appendTo={appendTo}
       >
-        <Popover.Element>{children}</Popover.Element>
+        <Popover.Element>
+          {React.cloneElement(children, { onKeyDown: this.keyDown })}
+        </Popover.Element>
         <Popover.Content>{content}</Popover.Content>
       </Popover>
     );
