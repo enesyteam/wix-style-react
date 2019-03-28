@@ -42,10 +42,14 @@ class Tooltip extends React.PureComponent {
     this.setState({ isOpen: false }, () => onHide());
   };
 
-  keyDown = e => {
-    if (e.key === 'Escape') {
-      this.setState({ isOpen: false });
-    }
+  onFocus = focus => {
+    this.open();
+    focus();
+  };
+
+  onBlur = blur => {
+    this.close();
+    blur();
   };
 
   render() {
@@ -73,7 +77,10 @@ class Tooltip extends React.PureComponent {
         appendTo={appendTo}
       >
         <Popover.Element>
-          {React.cloneElement(children, { onKeyDown: this.keyDown })}
+          {React.cloneElement(children, {
+            onFocus: this.onFocus,
+            onBlur: this.onBlur,
+          })}
         </Popover.Element>
         <Popover.Content>{content}</Popover.Content>
       </Popover>

@@ -13,7 +13,8 @@ import {
 import { storySettings } from '../test/storySettings';
 
 import Tooltip from '..';
-import Button from '../../../Button';
+import IconButton from '../../../IconButton';
+import More from '../../../new-icons/More';
 
 export default {
   category: storySettings.category,
@@ -23,7 +24,14 @@ export default {
   componentPath: '..',
 
   componentProps: {
-    children: <Button>Hover me for a tooltip!</Button>,
+    children: (
+      <Tooltip content="HERE I AM! THIS IS ME!">
+        <IconButton>
+          <More />
+        </IconButton>
+      </Tooltip>
+    ),
+
     content: 'HERE I AM! THIS IS ME!',
     appendTo: 'parent',
     placement: 'top',
@@ -38,7 +46,9 @@ export default {
         'https://github.com/wix/wix-style-react/tree/master/src/TooltipNext/',
       component: (
         <Tooltip appendTo="window" content="HERE I AM! THIS IS ME!">
-          <Button>Hover me!</Button>
+          <IconButton>
+            <More />
+          </IconButton>
         </Tooltip>
       ),
     }),
