@@ -61,7 +61,7 @@
   box-sizing: border-box;
   background-color: $D80;
 
-  &:hover:not(.hasFocus) {
+  &:hover:not(.hasFocus.disabled) {
     background: $B50;
   }
 }

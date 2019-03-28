@@ -27,10 +27,11 @@ class Tag extends WixComponent {
   }
 
   _renderText() {
-    const { size, wrap, children } = this.props;
+    const { size, wrap, children, disabled } = this.props;
 
     return (
       <Text
+        skin={disabled ? 'disabled' : 'standard'}
         ellipsis={wrap}
         size={tagToTextSize[size]}
         weight={size === 'tiny' ? 'thin' : 'normal'}
@@ -43,11 +44,11 @@ class Tag extends WixComponent {
 
   _renderRemoveButton() {
     const { removable, disabled, size } = this.props;
-    if (removable && !disabled) {
+    if (removable) {
       return (
         <CloseButton
           size={size === 'large' ? 'medium' : 'small'}
-          skin="dark"
+          disabled={disabled}
           dataHook={dataHooks.removeButton}
           className={styles.removeButton}
           onClick={this._handleRemoveClick}
