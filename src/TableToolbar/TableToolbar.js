@@ -5,7 +5,12 @@ import Heading from '../Heading';
 import Text from '../Text';
 
 export const Title = props => {
-  return <Heading appearance="H3">{props.children}</Heading>;
+  const { dataHook } = props;
+  return (
+    <Heading dataHook={dataHook} appearance="H3">
+      {props.children}
+    </Heading>
+  );
 };
 Title.displayName = 'TableToolbar.Title';
 Title.propTypes = {
@@ -13,8 +18,9 @@ Title.propTypes = {
 };
 
 export const SelectedCount = props => {
+  const { dataHook } = props;
   return (
-    <Text weight="normal" size="medium">
+    <Text dataHook={dataHook} weight="normal" size="medium">
       {props.children}
     </Text>
   );
