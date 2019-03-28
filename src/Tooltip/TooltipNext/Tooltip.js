@@ -42,12 +42,12 @@ class Tooltip extends React.PureComponent {
     this.setState({ isOpen: false }, () => onHide());
   };
 
-  onFocus = focus => {
+  onFocus = (event, { focus }) => {
     this.open();
     focus();
   };
 
-  onBlur = blur => {
+  onBlur = (event, { blur }) => {
     this.close();
     blur();
   };

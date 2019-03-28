@@ -33,7 +33,7 @@ const load = module => {
 };
 
 
-export const accordionTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/Accordion/Accordion.uni.driver')));
+export const accordionTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/Accordion/Accordion.driver')));
 export const addItemTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/AddItem/AddItem.driver')));
 export const autoCompleteTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/AutoComplete/AutoComplete.driver')));
 export const autoCompleteCompositeTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/AutoCompleteComposite/AutoCompleteComposite.driver')));
@@ -128,3 +128,4 @@ export const fieldWithSelectionCompositeTestkitFactory = enzymeTestkitFactoryCre
 export const radioButtonTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/RadioGroup/RadioButton/RadioButton.driver')));
 export const messageBoxMarketerialLayoutTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/MessageBox/MessageBoxMarketerialLayout.driver')));
 export const messageBoxFunctionalLayoutTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/MessageBox/MessageBoxFunctionalLayout.driver')));
+
