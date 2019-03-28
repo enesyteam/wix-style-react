@@ -58,7 +58,7 @@ class Tooltip extends React.PureComponent {
         {content}
       </div>
     );
-    return typeof children === 'string' ? text : node;
+    return typeof content === 'string' ? text : node;
   };
 
   open = () => {

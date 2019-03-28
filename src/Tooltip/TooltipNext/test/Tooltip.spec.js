@@ -34,7 +34,7 @@ describe('Tooltip', () => {
       const { driver } = render(
         <Tooltip content="hello" enterDelay={0}>
           {children}
-        </Tooltip>
+        </Tooltip>,
       );
       expect(await driver.isContentElementExists()).toBe(false);
       await driver.mouseEnter();
@@ -55,7 +55,7 @@ describe('Tooltip', () => {
       const { driver } = render(
         <Tooltip content="hello" enterDelay={0}>
           {children}
-        </Tooltip>
+        </Tooltip>,
       );
       expect(await driver.isContentElementExists()).toBe(false);
       await driver.tabIn();
