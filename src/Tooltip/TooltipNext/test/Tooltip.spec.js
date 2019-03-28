@@ -81,4 +81,17 @@ describe('Tooltip', () => {
       expect(onHide).toHaveBeenCalled();
     });
   });
+
+  // describe('`content` prop', () => {
+  //   it.only('should render with Text component [when] string is given', async () => {
+  //     const onShow = jest.fn();
+  //     const { driver } = render(
+  //       <Tooltip onShow={onShow} content="string">
+  //         {children}
+  //       </Tooltip>
+  //     );
+
+  //     expect(await driver.isContentAString()).toBe(true);
+  //   });
+  // });
 });

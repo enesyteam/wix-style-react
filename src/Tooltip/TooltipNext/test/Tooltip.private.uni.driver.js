@@ -20,5 +20,6 @@ export const tooltipPrivateDriverFactory = base => {
     ...publicDriverFactory(base),
     tabIn: async () => await focus(),
     tabOut: async () => await blur(),
+    isContentAString: async () => (await testkit(base)).getContentElement(),
   };
 };

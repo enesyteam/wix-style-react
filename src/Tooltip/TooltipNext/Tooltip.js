@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Popover } from 'wix-ui-core/popover';
+import Text from '../../Text';
 import styles from './Tooltip.st.css';
 
 /**
@@ -20,16 +21,44 @@ class Tooltip extends React.PureComponent {
     onShow: PropTypes.func,
     onHide: PropTypes.func,
     placement: PropTypes.string,
+    showArrow: PropTypes.bool,
   };
 
   static defaultProps = {
     content: '',
     appendTo: 'parent',
     placement: 'top',
+    showArrow: true,
     enterDelay: 200,
     exitDelay: 0,
+    maxWidth: 204,
     onShow: () => ({}),
     onHide: () => ({}),
+  };
+
+  renderElement = () =>
+    React.cloneElement(this.props.children, {
+      onFocus: this.onFocus,
+      onBlur: this.onBlur,
+    });
+
+  renderContent = () => {
+    const { content, maxWidth } = this.props;
+
+    const text = (
+      <div style={{ maxWidth: `${maxWidth}px` }}>
+        <Text dataHook="tooltip-text" size="small" weight="normal" light>
+          {content}
+        </Text>
+      </div>
+    );
+
+    const node = (
+      <div data-hook="tooltip-node" style={{ maxWidth: `${maxWidth}px` }}>
+        {content}
+      </div>
+    );
+    return typeof children === 'string' ? text : node;
   };
 
   open = () => {
@@ -54,35 +83,28 @@ class Tooltip extends React.PureComponent {
 
   render() {
     const {
-      children,
-      content,
       appendTo,
       placement,
       exitDelay,
       enterDelay,
+      showArrow,
       dataHook,
     } = this.props;
-    const { isOpen } = this.state;
     const timeout = { enter: enterDelay, exit: exitDelay };
     return (
       <Popover
         {...styles('root', {}, this.props)}
         dataHook={dataHook}
         placement={placement}
-        showArrow
+        showArrow={showArrow}
         timeout={timeout}
-        shown={isOpen}
+        shown={this.state.isOpen}
         onMouseEnter={this.open}
         onMouseLeave={this.close}
         appendTo={appendTo}
       >
-        <Popover.Element>
-          {React.cloneElement(children, {
-            onFocus: this.onFocus,
-            onBlur: this.onBlur,
-          })}
-        </Popover.Element>
-        <Popover.Content>{content}</Popover.Content>
+        <Popover.Element>{this.renderElement()}</Popover.Element>
+        <Popover.Content>{this.renderContent()}</Popover.Content>
       </Popover>
     );
   }
