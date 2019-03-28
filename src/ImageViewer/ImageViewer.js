@@ -35,11 +35,11 @@ class ImageViewer extends WixComponent {
       error,
       errorMessage,
       tooltipPlacement,
+      className,
     } = this.props;
-    const classes = classNames(style.container, {
-      [style.hasLogo]: imageUrl,
-      [style.hasError]: error,
-    });
+    const classes = classNames(style.container,
+       {[style.hasLogo]: imageUrl, [style.hasError]: error,}, 
+       ...className);
     const tooltipProps = {
       ...DEFAULT_TOOLTIP_PROPS,
       ...this.props.tooltipProps,
