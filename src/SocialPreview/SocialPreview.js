@@ -8,7 +8,7 @@ import ImageViewer from '../ImageViewer';
 /**
  * A displayer for a social post
  */
-class SocialPreview extends React.PureComponent {
+class SocialPreview extends React.Component {
   static displayName = 'SocialPreview';
 
   static propTypes = {
@@ -19,12 +19,6 @@ class SocialPreview extends React.PureComponent {
     imageViewerProps: PropTypes.object,
   };
 
-  static defaultProps = {
-    title: 'Click me!',
-    description: 'A description for the displayed item',
-    previewUrl: 'www.site-name.com',
-  };
-
   render() {
     const { title, description, previewUrl, imageViewerProps } = this.props;
 
@@ -32,48 +26,42 @@ class SocialPreview extends React.PureComponent {
       <div {...style('root', {}, this.props)}>
         <ImageViewer
           className={style.imageViewer}
-          {...imageViewerProps}
           width="100%"
-          height="144px"
+          height="100%"
           dataHook="socialPreview-imageViewer"
+          {...imageViewerProps}
         />
         <div className={style.container}>
-          <div>
-            <Text
-              weight="normal"
-              size="tiny"
-              light={false}
-              dataHook="socialPreview-url"
-              className={style.socialPreviewUrl}
-              ellipsis
-            >
-              {previewUrl.toUpperCase()}
-            </Text>
-          </div>
-          <div>
-            <Text
-              weight="bold"
-              size="small"
-              light={false}
-              dataHook="socialPreview-title"
-              className={style.socialPreviewTitle}
-              ellipsis
-            >
-              {title}
-            </Text>
-          </div>
-          <div>
-            <Text
-              weight="thin"
-              size="tiny"
-              light={false}
-              dataHook="socialPreview-description"
-              className={style.socialPreviewdescription}
-              ellipsis
-            >
-              {description}
-            </Text>
-          </div>
+          <Text
+            weight="normal"
+            size="tiny"
+            light={false}
+            dataHook="socialPreview-url"
+            className={style.socialPreviewUrl}
+            ellipsis
+          >
+            {previewUrl && previewUrl.toUpperCase()}
+          </Text>
+          <Text
+            weight="bold"
+            size="small"
+            light={false}
+            dataHook="socialPreview-title"
+            className={style.socialPreviewTitle}
+            ellipsis
+          >
+            {title}
+          </Text>
+          <Text
+            weight="thin"
+            size="tiny"
+            light={false}
+            dataHook="socialPreview-description"
+            className={style.socialPreviewDescription}
+            ellipsis
+          >
+            {description}
+          </Text>
         </div>
       </div>
     );

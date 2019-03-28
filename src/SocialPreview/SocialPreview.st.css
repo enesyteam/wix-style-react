@@ -3,31 +3,47 @@
   -st-default: Text;
 };
 
+:import {
+  -st-from: "wix-ui-backoffice/src/colors.st.css";
+  -st-named: D10, D20, D40, D60, D70, D80;
+}
+
 .root {
-  width: 342px;
-  border: solid 1px #dfe5eb;
-  background-color: #f0f4f7;
-  height: 210px;
+  width: 100%;
+  border: solid 1px value(D60);
+  background-color: value(D70);
+  height: 100%;
   box-sizing: border-box;
 }
 
 .container {
   padding: 9px 12px 9px 12px;
+  border-top: solid 1px value(D60);
+}
+.socialPreviewUrl {
+  -st-extends: Text;
 }
 
-.root .socialPreviewUrl {
-  -st-extends: Text;
-  color: #7a92a5;
+.socialPreviewUrl:size(tiny) {
+  color: value(D40);
+  display: block;
 }
 
-.root .socialPreviewTitle {
+.socialPreviewTitle{
   -st-extends: Text;
-  color: #162d3d;
+}
+.socialPreviewTitle:size(small) {
+  color: value(D10);
+  display: block;
 }
 
-.root .socialPreviewDescription {
+.socialPreviewDescription {
   -st-extends: Text;
-  color: #32536a;
+}
+
+.socialPreviewDescription:size(tiny) {
+  color: value(D20);
+  display: block;
 }
 
 .imageViewer {
