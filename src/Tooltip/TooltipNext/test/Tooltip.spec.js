@@ -34,7 +34,7 @@ describe('Tooltip', () => {
       const { driver } = render(
         <Tooltip content="hello" enterDelay={0}>
           {children}
-        </Tooltip>,
+        </Tooltip>
       );
       expect(await driver.isContentElementExists()).toBe(false);
       await driver.mouseEnter();
@@ -55,7 +55,7 @@ describe('Tooltip', () => {
       const { driver } = render(
         <Tooltip content="hello" enterDelay={0}>
           {children}
-        </Tooltip>,
+        </Tooltip>
       );
       expect(await driver.isContentElementExists()).toBe(false);
       await driver.tabIn();
@@ -82,16 +82,16 @@ describe('Tooltip', () => {
     });
   });
 
-  // describe('`content` prop', () => {
-  //   it.only('should render with Text component [when] string is given', async () => {
-  //     const onShow = jest.fn();
-  //     const { driver } = render(
-  //       <Tooltip onShow={onShow} content="string">
-  //         {children}
-  //       </Tooltip>
-  //     );
+  describe('`content` prop', () => {
+    it('should render string inside tooltip element [when] string is given', async () => {
+      const onShow = jest.fn();
+      const { driver } = render(
+        <Tooltip onShow={onShow} content="string">
+          {children}
+        </Tooltip>
+      );
 
-  //     expect(await driver.isContentAString()).toBe(true);
-  //   });
-  // });
+      expect(await driver.getTooltipText()).toBe('string');
+    });
+  });
 });

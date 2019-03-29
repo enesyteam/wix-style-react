@@ -2,12 +2,12 @@ import { tooltipDriverFactory as publicDriverFactory } from '../Tooltip.uni.driv
 import { Simulate } from 'react-dom/test-utils';
 import { testkit } from 'wix-ui-core/dist/src/components/popover/Popover.uni.driver';
 
-export const tooltipPrivateDriverFactory = base => {
+export const tooltipPrivateDriverFactory = (base, body) => {
   const fireKeyDown = () => window.dispatchEvent(new window.Event('keydown'));
   const fireKeyUp = () => window.dispatchEvent(new window.Event('keyup'));
   const focus = async () => {
     fireKeyDown();
-    Simulate.focus((await testkit(base).getTargetElement()).children[0]);
+    Simulate.focus((await testkit(base, body).getTargetElement()).children[0]);
     fireKeyUp();
   };
   const blur = async () => {
@@ -17,9 +17,8 @@ export const tooltipPrivateDriverFactory = base => {
   };
 
   return {
-    ...publicDriverFactory(base),
+    ...publicDriverFactory(base, body),
     tabIn: async () => await focus(),
     tabOut: async () => await blur(),
-    isContentAString: async () => (await testkit(base)).getContentElement(),
   };
 };
