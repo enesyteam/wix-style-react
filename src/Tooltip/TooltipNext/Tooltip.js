@@ -14,13 +14,27 @@ class Tooltip extends React.PureComponent {
   state = { isOpen: false };
 
   static propTypes = {
+    /** applied as data-hook HTML attribute that can be used to create driver in testing */
     dataHook: PropTypes.string,
+    /** tooltip trigger element. Can be either string or renderable node */
     children: PropTypes.node.isRequired,
+    /** tooltip content. Can be either string or renderable node */
     content: PropTypes.node,
+    /** tooltips delay on show event */
+    enterDelay: PropTypes.number,
+    /** tooltips delay on hide event */
+    exitDelay: PropTypes.number,
+    /** tooltips content relation to a dom element */
     appendTo: PropTypes.string,
+    /** tooltip content container width in pixels */
+    maxWidth: PropTypes.number,
+    /** callback on tooltips content show event */
     onShow: PropTypes.func,
+    /** callback on tooltips content hide event */
     onHide: PropTypes.func,
+    /** tooltip content placement in relation to target element */
     placement: PropTypes.string,
+    /** to enable or disable arrow */
     showArrow: PropTypes.bool,
   };
 

@@ -20,14 +20,14 @@ describe('Tooltip', () => {
 
   it('should be hidden by default', async () => {
     const { driver } = render(<Tooltip>{children}</Tooltip>);
-    expect(await driver.isContentElementExists()).toBe(false);
+    expect(await driver.tooltipExists()).toBe(false);
   });
 
   describe('Mouse events', () => {
     it('tooltip should be visible on mouse over', async () => {
       const { driver } = render(<Tooltip>{children}</Tooltip>);
       await driver.mouseEnter();
-      expect(await driver.isContentElementExists()).toBe(true);
+      expect(await driver.tooltipExists()).toBe(true);
     });
 
     it('tooltip should hidden on mouse leave', async () => {
@@ -36,11 +36,11 @@ describe('Tooltip', () => {
           {children}
         </Tooltip>
       );
-      expect(await driver.isContentElementExists()).toBe(false);
+      expect(await driver.tooltipExists()).toBe(false);
       await driver.mouseEnter();
-      expect(await driver.isContentElementExists()).toBe(true);
+      expect(await driver.tooltipExists()).toBe(true);
       await driver.mouseLeave();
-      expect(await driver.isContentElementExists()).toBe(false);
+      expect(await driver.tooltipExists()).toBe(false);
     });
   });
 
@@ -48,7 +48,7 @@ describe('Tooltip', () => {
     it('tooltip should be visible on keyboard focus', async () => {
       const { driver } = render(<Tooltip>{children}</Tooltip>);
       await driver.tabIn();
-      expect(await driver.isContentElementExists()).toBe(true);
+      expect(await driver.tooltipExists()).toBe(true);
     });
 
     it('tooltip should be hidden on keyboard blur event', async () => {
@@ -57,11 +57,11 @@ describe('Tooltip', () => {
           {children}
         </Tooltip>
       );
-      expect(await driver.isContentElementExists()).toBe(false);
+      expect(await driver.tooltipExists()).toBe(false);
       await driver.tabIn();
-      expect(await driver.isContentElementExists()).toBe(true);
+      expect(await driver.tooltipExists()).toBe(true);
       await driver.tabOut();
-      expect(await driver.isContentElementExists()).toBe(false);
+      expect(await driver.tooltipExists()).toBe(false);
     });
   });
 
