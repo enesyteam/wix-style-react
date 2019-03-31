@@ -1,9 +1,22 @@
 import React from 'react';
 import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
-import { tableToolbarUniDriverFactory } from './TableToolbar.uni.driver';
 import { TableToolbar } from './TableToolbar';
+import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
 
 describe('TableToolbar', () => {
+  const tableToolbarUniDriverFactory = base => {
+    return {
+      ...baseUniDriverFactory(base),
+      getByDataHook: async dataHook => {
+        const element = base.$(`[data-hook=${dataHook}]`);
+        if (!(await element.exists())) {
+          return false;
+        }
+        return element;
+      },
+    };
+  };
+
   const createDriver = createUniDriverFactory(tableToolbarUniDriverFactory);
 
   it('Should allow adding datahook to TableToolbar.Title', async () => {
