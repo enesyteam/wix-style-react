@@ -448,7 +448,7 @@ import { editableTitleUniDriverFactory } from '../src/EditableTitle/EditableTitl
 
 export const editableTitleTestkitFactory = protractorUniTestkitFactoryCreator(
   editableTitleUniDriverFactory,
- );
+);
 
 import { socialPreviewDriverFactory } from '../src/SocialPreview/SocialPreview.uni.driver';
 

@@ -40,11 +40,17 @@ describe('SocialPreview', () => {
     const dataHook = 'myDataHook';
     const wrapper = mount(
       <div>
-        <SocialPreview dataHook={dataHook} imageViewerProps={{imageUrl:'www.image-url.com'}} />
+        <SocialPreview
+          dataHook={dataHook}
+          imageViewerProps={{ imageUrl: 'www.image-url.com' }}
+        />
       </div>,
     );
-    const testkit = enzymeImageViewerTestkitFactory({ wrapper, dataHook: 'socialPreview-imageViewer' });
+    const testkit = enzymeImageViewerTestkitFactory({
+      wrapper,
+      dataHook: 'socialPreview-imageViewer',
+    });
     expect(testkit.exists()).toBeTruthy();
-    expect(testkit.getImageUrl()).toEqual('www.image-url.com')
+    expect(testkit.getImageUrl()).toEqual('www.image-url.com');
   });
 });
