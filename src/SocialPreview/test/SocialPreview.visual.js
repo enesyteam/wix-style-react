@@ -24,12 +24,9 @@ const tests = [
       {
         it: 'long text',
         props: {
-          title:
-            'Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!Click me!',
-          description:
-            'a short description for a site a short description for a site a short description for a site a short description for a site a short description for a site a short description for a site a short description for a site a short description for a site',
-          previewUrl:
-            'www.site-name.comwww.site-name.comwww.site-name.comwww.site-name.comwww.site-name.comwww.site-name.comwww.site-name.comwww.site-name.comwww.site-name.comwww.site-name.comwww.site-name.comwww.site-name.comwww.site-name.comwww.site-name.com',
+          title: 'Click me!'.repeat(27),
+          description: 'a short description for a site'.repeat(8),
+          previewUrl: 'www.site-name.comwww.site-name.com'.repeat(14),
         },
         componentWrapper: ({ children }) => (
           <div style={{ width: '340px' }}>{children}</div>
