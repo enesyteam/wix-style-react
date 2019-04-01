@@ -5,10 +5,8 @@ import {
   Editor,
   ContentState,
   convertFromHTML,
-  convertToRaw,
   CompositeDecorator,
 } from 'draft-js';
-import draftToHtml from 'draftjs-to-html';
 import mapValues from 'lodash/mapValues';
 
 import styles from './RichTextInputArea.scss';
@@ -37,7 +35,8 @@ class RichTextInputArea extends React.PureComponent {
 
   static propTypes = {
     dataHook: PropTypes.string,
-    value: PropTypes.string,
+    initialValue: PropTypes.string,
+    placeholder: PropTypes.string,
     onChange: PropTypes.func,
     texts: PropTypes.shape({
       toolbarButtons: PropTypes.shape(
@@ -53,7 +52,7 @@ class RichTextInputArea extends React.PureComponent {
   };
 
   static defaultProps = {
-    value: '',
+    initialValue: '',
     texts: {},
   };
 
@@ -77,14 +76,14 @@ class RichTextInputArea extends React.PureComponent {
     };
   }
   componentDidMount() {
-    const { value } = this.props;
+    const { initialValue } = this.props;
 
     // TODO: currently it treats the value as an initial value
-    this._updateContentByValue(value);
+    this._updateContentByValue(initialValue);
   }
 
   render() {
-    const { dataHook } = this.props;
+    const { dataHook, placeholder } = this.props;
 
     return (
       <div data-hook={dataHook} className={styles.root}>
@@ -112,28 +111,21 @@ class RichTextInputArea extends React.PureComponent {
         <Editor
           ref="editor"
           editorState={this.state.editorState}
-          onChange={this._onEditorChange}
+          onChange={this._setEditorState}
+          placeholder={placeholder}
         />
       </div>
     );
   }
 
-  _setEditorState = (editorState, onDone) =>
-    this.setState({ editorState }, onDone);
-
-  _onEditorChange = newEditorState => {
-    this.setState({ editorState: newEditorState });
-
-    const currentContent = this.state.editorState.getCurrentContent();
-    const newContent = newEditorState.getCurrentContent();
-
-    if (currentContent !== newContent) {
+  _setEditorState = (newEditorState, onStateChanged = () => {}) => {
+    this.setState({ editorState: newEditorState }, () => {
       const { onChange = () => {} } = this.props;
-      const rawNewContent = convertToRaw(newContent);
-      const newContentAsHtml = draftToHtml(rawNewContent);
 
-      onChange(newContentAsHtml);
-    }
+      // Invoking the external `onChange` callback with the converted HTML value
+      onChange(EditorUtilities.convertToHtml(newEditorState));
+      onStateChanged();
+    });
   };
 
   _updateContentByValue = value => {

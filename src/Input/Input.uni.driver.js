@@ -2,11 +2,11 @@ import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
 import styles from './Input.scss';
 import { ReactBase } from '../../test/utils/unidriver';
 
-export const testkit = (base, body, document) => {
+export const testkit = base => {
   const input = base.$('input');
 
   const reactBase = ReactBase(base);
-  const reactBaseInput = ReactBase(input, document);
+  const reactBaseInput = ReactBase(input);
 
   const clearButtonNode = base.$(`[data-hook=input-clear-button]`);
   const unitNode = base.$(`.${styles.unit}`);
@@ -61,6 +61,8 @@ export const testkit = (base, body, document) => {
       return await ReactBase(unitNode).textContent();
     },
     getTabIndex: async () => await reactBaseInput.tabIndex(),
+    isCustomInput: async () =>
+      (await reactBaseInput.attr('data-hook')) === 'wsr-custom-input',
     getReadOnly: async () => await reactBaseInput.readOnly(),
     getTextOverflow: async () =>
       (await reactBaseInput.getStyle())['text-overflow'],

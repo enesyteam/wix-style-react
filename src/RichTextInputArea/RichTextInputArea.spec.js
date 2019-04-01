@@ -1,8 +1,9 @@
 import React from 'react';
 import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
+import eventually from 'wix-eventually';
 
 import RichTextInputArea from './RichTextInputArea';
-import richTextInputAreaPrivateDriverFactory from './RichTextInputArea.private.driver';
+import richTextInputAreaPrivateDriverFactory from './RichTextInputArea.private.uni.driver';
 import toolbarButtonStyles from './RichTextToolbarButton.scss';
 
 describe('RichTextInputArea', () => {
@@ -14,9 +15,9 @@ describe('RichTextInputArea', () => {
   let currentValue;
 
   describe('Editor', () => {
-    it('should render the text when `value` prop is plain text', async () => {
+    it('should render the text when `initialValue` prop is plain text', async () => {
       const text = 'Some text';
-      const driver = createDriver(<RichTextInputArea value={text} />);
+      const driver = createDriver(<RichTextInputArea initialValue={text} />);
 
       expect(await driver.exists()).toBe(true);
       expect(await driver.getContent()).toBe(text);
@@ -27,7 +28,7 @@ describe('RichTextInputArea', () => {
       const expectedText = texts.join(' ');
       const driver = createDriver(
         <RichTextInputArea
-          value={`<p>${texts[0]} <strong>${texts[1]}</strong></p>`}
+          initialValue={`<p>${texts[0]} <strong>${texts[1]}</strong></p>`}
         />,
       );
 
@@ -38,12 +39,20 @@ describe('RichTextInputArea', () => {
     it('should invoke `onChange` with parsed HTML value after typing text', async () => {
       const callback = jest.fn();
       const text = 'Some text';
-      const expectedHtmlValue = `<p>${text}</p>\n`;
+      const expectedHtmlValue = `<p>${text}</p>`;
       const driver = createDriver(<RichTextInputArea onChange={callback} />);
 
       await driver.enterText(text);
 
       expect(callback).toHaveBeenCalledWith(expectedHtmlValue);
+    });
+
+    it('should render a placeholder', async () => {
+      const text = 'Some text';
+      const driver = createDriver(<RichTextInputArea placeholder={text} />);
+
+      expect(await driver.exists()).toBe(true);
+      expect(await driver.getContent()).toBe(text);
     });
   });
 
@@ -64,7 +73,7 @@ describe('RichTextInputArea', () => {
 
     describe('Bold', () => {
       const sampleText = 'Bold';
-      const sampleValue = `<p><strong>${sampleText}</strong></p>\n`;
+      const sampleValue = `<p><strong>${sampleText}</strong></p>`;
 
       it('should render text as bold after clicking the bold button', async () => {
         const driver = createDriver(
@@ -85,18 +94,11 @@ describe('RichTextInputArea', () => {
 
         expect(await button.hasClass(toolbarButtonStyles.active)).toBe(true);
       });
-
-      it('should render the bold button as active when the selection contains bold text', async () => {
-        const driver = createDriver(<RichTextInputArea value={sampleValue} />);
-        const button = await driver.getBoldButton();
-
-        expect(await button.hasClass(toolbarButtonStyles.active)).toBe(true);
-      });
     });
 
     describe('Italic', () => {
       const sampleText = 'Italic';
-      const sampleValue = `<p><em>${sampleText}</em></p>\n`;
+      const sampleValue = `<p><em>${sampleText}</em></p>`;
 
       it('should render text as italic after clicking the italic button', async () => {
         const driver = createDriver(
@@ -117,18 +119,11 @@ describe('RichTextInputArea', () => {
 
         expect(await button.hasClass(toolbarButtonStyles.active)).toBe(true);
       });
-
-      it('should render the italic button as active when the selection contains italic text', async () => {
-        const driver = createDriver(<RichTextInputArea value={sampleValue} />);
-        const button = await driver.getItalicButton();
-
-        expect(await button.hasClass(toolbarButtonStyles.active)).toBe(true);
-      });
     });
 
     describe('Underline', () => {
       const sampleText = 'Underline';
-      const sampleValue = `<p><ins>${sampleText}</ins></p>\n`;
+      const sampleValue = `<p><u>${sampleText}</u></p>`;
 
       it('should render text with underline after clicking the underline button', async () => {
         const driver = createDriver(
@@ -149,18 +144,11 @@ describe('RichTextInputArea', () => {
 
         expect(await button.hasClass(toolbarButtonStyles.active)).toBe(true);
       });
-
-      it.skip('should render the underline button as active when the selection contains underline text', async () => {
-        const driver = createDriver(<RichTextInputArea value={sampleValue} />);
-        const button = await driver.getUnderlineButton();
-
-        expect(await button.hasClass(toolbarButtonStyles.active)).toBe(true);
-      });
     });
 
     describe('Bulleted List', () => {
       const sampleText = 'Text';
-      const sampleValue = `<ul>\n<li>${sampleText}</li>\n</ul>\n`;
+      const sampleValue = `<ul>\n  <li>${sampleText}</li>\n</ul>`;
 
       it('should render text as bulleted list after clicking the bulleted list button', async () => {
         const driver = createDriver(
@@ -181,18 +169,11 @@ describe('RichTextInputArea', () => {
 
         expect(await button.hasClass(toolbarButtonStyles.active)).toBe(true);
       });
-
-      it.skip('should render the bulleted list button as active when the selection contains an item', async () => {
-        const driver = createDriver(<RichTextInputArea value={sampleValue} />);
-        const button = await driver.getBulletedListButton();
-
-        expect(await button.hasClass(toolbarButtonStyles.active)).toBe(true);
-      });
     });
 
     describe('Numbered List', () => {
       const sampleText = 'Text';
-      const sampleValue = `<ol>\n<li>${sampleText}</li>\n</ol>\n`;
+      const sampleValue = `<ol>\n  <li>${sampleText}</li>\n</ol>`;
 
       it('should render text as numbered list after clicking the numbered list button', async () => {
         const driver = createDriver(
@@ -213,13 +194,6 @@ describe('RichTextInputArea', () => {
 
         expect(await button.hasClass(toolbarButtonStyles.active)).toBe(true);
       });
-
-      it.skip('should render the numbered list button as active when the selection contains an item', async () => {
-        const driver = createDriver(<RichTextInputArea value={sampleValue} />);
-        const button = await driver.getNumberedListButton();
-
-        expect(await button.hasClass(toolbarButtonStyles.active)).toBe(true);
-      });
     });
 
     describe('Link', () => {
@@ -231,13 +205,14 @@ describe('RichTextInputArea', () => {
         expect(await driver.isFormDisplayed()).toBe(true);
       });
 
-      it.skip('should render text as link after inserting required data', async () => {
+      it('should render text as link after inserting required data', async () => {
         const driver = createDriver(
           <RichTextInputArea onChange={value => (currentValue = value)} />,
         );
         const typedText = 'Link';
         const typedUrl = 'http://wix.com';
-        const expectedText = `<p><a href=${typedUrl}>${typedText}</a></p>`;
+        const expectedText = `<p><a rel=\"noopener noreferrer\" target=\"_blank\" href=\"${typedUrl}\">${typedText}</a></p>`;
+        window.scrollTo = jest.fn();
 
         await driver.clickLinkButton();
         await driver.insertLink(typedText, typedUrl);
@@ -265,13 +240,15 @@ describe('RichTextInputArea', () => {
       expect(await driver.isFormDisplayed()).toBe(true);
     });
 
-    it.skip('should hide the form after clicking the cancel button', async () => {
+    it('should hide the form after clicking the cancel button', async () => {
       const driver = createDriver(<RichTextInputArea />);
 
       await driver.clickLinkButton();
       await driver.clickFormCancelButton();
 
-      expect(await driver.isFormDisplayed()).toBe(false);
+      await eventually(async () => {
+        expect(await driver.isFormDisplayed()).toBe(false);
+      });
     });
   });
 });

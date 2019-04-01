@@ -8,6 +8,7 @@ import MultiSelect from '..';
 
 import ExampleReorderable from './ExampleReorderable';
 import TestTabsSwitches from './tests/TestTabsSwitches';
+import TestLineNotBraking from './tests/TestLineNotBraking';
 
 const kind = getTestStoryKind({
   category: storySettings.category,
@@ -83,3 +84,10 @@ MultiSelectTests.add(testStories.disabled, () => (
     />
   </div>
 ));
+
+MultiSelectTests.add(testStories.lineNotBraking, () => (
+  <div style={{ width: '400px' }}>
+    <TestLineNotBraking />
+  </div>
+));
+

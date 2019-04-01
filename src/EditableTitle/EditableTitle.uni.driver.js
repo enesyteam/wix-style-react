@@ -3,14 +3,14 @@ import { testkit as inputUniDriverFactory } from '../Input/Input.uni.driver';
 
 const dataHookOf = dataHook => `[data-hook="${dataHook}"]`;
 
-export const editableTitleUniDriverFactory = (base, body, document) => {
+export const editableTitleUniDriverFactory = base => {
   const dataHook = {
     heading: dataHookOf('heading'),
     renamingField: dataHookOf('renaming-field'),
   };
 
   const inputDriver = () =>
-    inputUniDriverFactory(base.$(dataHook.renamingField), body, document);
+    inputUniDriverFactory(base.$(dataHook.renamingField));
   const heading = base.$(dataHook.heading);
 
   return {
@@ -19,7 +19,5 @@ export const editableTitleUniDriverFactory = (base, body, document) => {
     getInput: inputDriver,
     getHeadingText: () => heading.text(),
     clickHeading: () => heading.click(),
-
-    exists: () => !!base.exists(),
   };
 };
