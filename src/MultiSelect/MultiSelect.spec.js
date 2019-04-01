@@ -148,10 +148,24 @@ describe('MultiSelect', () => {
       expect(driver.inputWrapperHasError()).toBeTruthy();
     });
 
-
     it('should have disabled attribute on input if disabled', async () => {
-      const { driver} = createDriver(<MultiSelect disabled options={options}/>);
-      expect(driver.isDisabled()).toBeTruthy();
+      const { driver } = createDriver(
+        <MultiSelect disabled options={options} />,
+      );
+      expect(driver.isDisabled()).toBe(true);
+    });
+
+    it('should have disabled attribute on input with tags if disabled', async () => {
+       const tags = [
+        { label: 'Alabama', id: 'Alabama' },
+        { label: 'Alaska', id: 'Alaska' },
+        { label: 'Arkansas', id: 'Arkansas' },
+      ];
+
+      const { driver } = createDriver(
+        <MultiSelect disabled options={options} tags={tags}/>,
+      );
+      expect(driver.isDisabled()).toBe(true);
     });
 
     describe('Placeholder', () => {
@@ -471,6 +485,32 @@ describe('MultiSelect', () => {
 
       expect(onSelect).toHaveBeenCalledTimes(1);
       expect(onSelect).toBeCalledWith(options[0]);
+    });
+
+    it('should NOT call onSelect (keyboard) when MultiSelect is disabled', () => {
+      const onSelect = jest.fn();
+
+      const { driver } = createDriver(
+        <MultiSelect disabled options={options} onSelect={onSelect} />,
+      );
+      driver.pressKey('ArrowDown');
+      driver.pressKey('ArrowDown');
+      driver.pressKey('Enter');
+
+      expect(onSelect).not.toHaveBeenCalled();
+    });
+
+    it('should NOT call onSelect (mouse click) when MultiSelect is disabled', () => {
+      const onSelect = jest.fn();
+
+      const { driver, dropdownLayoutDriver } = createDriver(
+        <MultiSelect disabled options={options} onSelect={onSelect} />,
+      );
+
+      driver.clickOnInputWrapper();
+
+      expect(dropdownLayoutDriver.isShown()).toBe(false);
+      expect(driver.inputWrapperHasFocus()).toBe(false);
     });
 
     // TODO: Disabled since in order to support this in new API, we better add ability for Dropdownlayout to accept custom "select" keys.
