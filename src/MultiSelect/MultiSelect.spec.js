@@ -509,6 +509,7 @@ describe('MultiSelect', () => {
 
       expect(dropdownLayoutDriver.isShown()).toBe(false);
       expect(driver.inputWrapperHasFocus()).toBe(false);
+      expect(onSelect).not.toHaveBeenCalled();
     });
 
     // TODO: Disabled since in order to support this in new API, we better add ability for Dropdownlayout to accept custom "select" keys.
