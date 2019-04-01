@@ -148,6 +148,12 @@ describe('MultiSelect', () => {
       expect(driver.inputWrapperHasError()).toBeTruthy();
     });
 
+
+    it('should have disabled attribute on input if disabled', async () => {
+      const { driver} = createDriver(<MultiSelect disabled options={options}/>);
+      expect(driver.isDisabled()).toBeTruthy();
+    });
+
     describe('Placeholder', () => {
       it('should display a placeholder if there are no tags', () => {
         const placeholder = 'myPlaceholder';
