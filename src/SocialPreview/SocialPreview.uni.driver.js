@@ -12,8 +12,5 @@ export const socialPreviewDriverFactory = base => {
     /** Get SocialPreview description */
     getDescription: async () =>
       base.$('[data-hook="socialPreview-description"]').text(),
-
-    getImageViewer: async () =>
-      base.$('[data-hook="socialPreview-imageViewer"]'),
   };
 };

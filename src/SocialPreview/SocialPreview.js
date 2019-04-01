@@ -17,20 +17,15 @@ class SocialPreview extends React.Component {
     description: PropTypes.string,
     previewUrl: PropTypes.string,
     imageViewerProps: PropTypes.object,
+    media: PropTypes.func,
   };
 
   render() {
-    const { title, description, previewUrl, imageViewerProps } = this.props;
+    const { title, description, previewUrl, media } = this.props;
 
     return (
       <div {...style('root', {}, this.props)}>
-        <ImageViewer
-          className={style.imageViewer}
-          width="100%"
-          height="100%"
-          dataHook="socialPreview-imageViewer"
-          {...imageViewerProps}
-        />
+        {media && media()}
         <div className={style.container}>
           <Text
             weight="normal"

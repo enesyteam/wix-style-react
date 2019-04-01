@@ -18,6 +18,7 @@ import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
 
 import SocialPreview from '..';
+import ImageViewer from '../../ImageViewer';
 
 const code = config => baseCode({ components: allComponents, ...config });
 
@@ -33,6 +34,14 @@ export default {
     title: 'Site Name | a title of your site',
     description: 'A short description for a site',
     previewUrl: 'www.site-name.com',
+    media: () => (
+      <ImageViewer
+        width="100%"
+        height="100%"
+        dataHook="socialPreview-imageViewer"
+        imageUrl="https://upload.wikimedia.org/wikipedia/commons/d/dd/New_Mela_Ramanputhur_Holy_Family_Church.jpg"
+      />
+    ),
   },
 
   sections: [
@@ -40,7 +49,7 @@ export default {
       issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
       sourceUrl:
         'https://github.com/wix/wix-style-react/tree/master/src/SocialPreview/',
-      component: <SocialPreview />,
+      component: <SocialPreview media={() => <ImageViewer />} />,
     }),
 
     tabs([
@@ -65,8 +74,19 @@ export default {
           code({
             title: 'Full Interactive Preview',
             description: 'A non compact version of same code example as above',
-            source: `<SocialPreview title='Site Name | a title of you site'
-    description='A short description for a site' previewUrl='www.site-name.com' imageViewerProps={{imageUrl:'https://upload.wikimedia.org/wikipedia/commons/d/dd/New_Mela_Ramanputhur_Holy_Family_Church.jpg'}}/>;`,
+            source: `<SocialPreview 
+                        title='Site Name | a title of you site'
+                        description='A short description for a site' 
+                        previewUrl='www.site-name.com'
+                        media = {() => (<ImageViewer 
+                                            width="100%" 
+                                            height="100%" 
+                                            dataHook="socialPreview-imageViewer" 
+                                            imageUrl="https://upload.wikimedia.org/wikipedia/commons/d/dd/New_Mela_Ramanputhur_Holy_Family_Church.jpg"
+                                        />
+                                        )
+                                }
+                      />;`,
           }),
         ],
       }),
