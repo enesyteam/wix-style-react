@@ -149,7 +149,9 @@ describe('MultiSelect', () => {
     });
 
     it('should have disabled attribute on input if disabled', async () => {
-      const { driver} = createDriver(<MultiSelect disabled options={options}/>,);
+      const { driver } = createDriver(
+        <MultiSelect disabled options={options} />,
+      );
       expect(driver.isDisabled()).toBe(true);
     });
 
