@@ -131,6 +131,20 @@ describe('MultiSelect', () => {
       const element = driver.element();
       await waitForVisibilityOf(element, 'Cannot find <MultiSelect/>');
     });
+
+    eyes.it('should render disabled MultiSelect', async () => {
+      const url = createTestStoryUrl({
+        category: storySettings.category,
+        storyName: storySettings.storyName,
+        testName: testStories.disabled,
+      });
+      await browser.get(url);
+      const driver = multiSelectTestkitFactory({
+        dataHook: 'disabled-multiselect',
+      });
+      const element = driver.element();
+      await waitForVisibilityOf(element, 'Cannot find <MultiSelect/>');
+    });
   });
 });
 
@@ -192,51 +206,4 @@ describe('MultiSelect - Focus behaviour', () => {
     expect(await driver.isFocused()).toEqual(false);
     expect(await driver.isOptionsShown()).toEqual(false);
   });
-});
-
-describe('MultiSelect - disabled behaviour', ()=>{
-  // let driver;
-  //
-  // const storyUrl = createTestStoryUrl({
-  //   category: storySettings.category,
-  //   storyName: storySettings.storyName,
-  //   testName: testStories.disabled,
-  // });
-  //
-  // beforeEach(async () => {
-  //   browser.get(storyUrl);
-  //
-  //   driver = multiSelectTestkitFactory({
-  //     dataHook: 'multiselect-disabled-test',
-  //   });
-  //
-  //   await waitForVisibilityOf(
-  //     driver.element(),
-  //     'Cant find MultiSelect',
-  //   );
-  // });
-  //
-  // async function focusOnMultiSelect() {
-  //   const firstElement = $(`[data-hook="input-for-focus-1"]`);
-  //   await pressTab();
-  //   expect(await isFocused(firstElement)).toEqual(true);
-  //
-  //   await pressTab();
-  //   expect(await driver.isFocused()).toEqual(true);
-  // }
-  //
-  // it('should NOT ', async () => {
-  //   await focusOnMultiSelect();
-  //
-  //   await driver.click();
-  //   await driver.hoverItemById('AL');
-  //   await pressTab();
-  //   expect(await driver.isFocused()).toEqual(true);
-  //   expect(await driver.isOptionsShown()).toEqual(true);
-  //
-  //   await pressTab();
-  //   expect(await driver.isFocused()).toEqual(false);
-  //   expect(await driver.isOptionsShown()).toEqual(false);
-  // });
-
 });

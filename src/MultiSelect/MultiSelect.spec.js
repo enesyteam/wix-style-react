@@ -149,21 +149,19 @@ describe('MultiSelect', () => {
     });
 
     it('should have disabled attribute on input if disabled', async () => {
-      const { driver } = createDriver(
-        <MultiSelect disabled options={options} />,
-      );
+      const { driver} = createDriver(<MultiSelect disabled options={options}/>,);
       expect(driver.isDisabled()).toBe(true);
     });
 
     it('should have disabled attribute on input with tags if disabled', async () => {
-       const tags = [
+      const tags = [
         { label: 'Alabama', id: 'Alabama' },
         { label: 'Alaska', id: 'Alaska' },
         { label: 'Arkansas', id: 'Arkansas' },
       ];
 
       const { driver } = createDriver(
-        <MultiSelect disabled options={options} tags={tags}/>,
+        <MultiSelect disabled options={options} tags={tags} />,
       );
       expect(driver.isDisabled()).toBe(true);
     });
