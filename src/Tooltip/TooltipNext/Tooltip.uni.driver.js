@@ -16,7 +16,7 @@ export const tooltipDriverFactory = (base, body) => {
     getTooltipText: async () => {
       await testkit(base, body).mouseEnter();
       const text = await textUniDriverFactory(
-        body.$('[data-hook="tooltip-text"]')
+        body.$('[data-hook="tooltip-text"]'),
       ).getText();
       // this makes sure that test is cleaning up after
       await testkit(base, body).mouseLeave();
