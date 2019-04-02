@@ -70,7 +70,11 @@ class ImageViewer extends WixComponent {
                 src={imageUrl}
               />
             </div>
-            <div className={style.imageBackground}>
+            <div
+              className={classNames(style.imageBackground, {
+                [style.removeRoundedBorders]: removeRoundedBorders,
+              })}
+            >
               <div className={style.buttons}>
                 {!!showUpdateButton && (
                   <Tooltip
