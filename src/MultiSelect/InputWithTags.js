@@ -25,8 +25,8 @@ class InputWithTags extends React.Component {
   }
 
   handleClick(e) {
-    this.input.focus();
     if (!this.props.disabled) {
+      this.input.focus();
       this.props.onInputClicked && this.props.onInputClicked(e);
     }
   }
