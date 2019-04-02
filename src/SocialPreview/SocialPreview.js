@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import style from './SocialPreview.st.css';
 
 import Text from '../Text';
-import ImageViewer from '../ImageViewer';
 
 /**
  * A displayer for a social post
@@ -17,7 +16,7 @@ class SocialPreview extends React.Component {
     description: PropTypes.string,
     previewUrl: PropTypes.string,
     imageViewerProps: PropTypes.object,
-    media: PropTypes.func,
+    media: PropTypes.node,
   };
 
   render() {
@@ -25,7 +24,7 @@ class SocialPreview extends React.Component {
 
     return (
       <div {...style('root', {}, this.props)}>
-        {media && media()}
+        {media}
         <div className={style.container}>
           <Text
             weight="normal"
