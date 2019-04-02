@@ -5,7 +5,6 @@ import {
   tab,
   description,
   importExample,
-  title,
   columns,
   divider,
   code as baseCode,
@@ -14,13 +13,24 @@ import {
   testkit,
 } from 'wix-storybook-utils/Sections';
 
-import { storySettings } from '../test/storySettings';
+import { storySettings } from '../tests/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
 
 import SocialPreview from '..';
 import ImageViewer from '../../ImageViewer';
 
+import Box from '../../Box';
+import BasicExampleRaw from '!raw-loader!./BasicExample';
+
 const code = config => baseCode({ components: allComponents, ...config });
+
+const mediaNode = (
+  <ImageViewer
+    width="100%"
+    height="100%"
+    imageUrl="https://upload.wikimedia.org/wikipedia/commons/d/dd/New_Mela_Ramanputhur_Holy_Family_Church.jpg"
+  />
+);
 
 export default {
   category: storySettings.category,
@@ -30,18 +40,10 @@ export default {
   componentPath: '..',
 
   componentProps: {
-    dataHook: storySettings.dataHook,
     title: 'Site Name | a title of your site',
     description: 'A short description for a site',
     previewUrl: 'www.site-name.com',
-    media: (
-      <ImageViewer
-        width="100%"
-        height="100%"
-        dataHook="socialPreview-imageViewer"
-        imageUrl="https://upload.wikimedia.org/wikipedia/commons/d/dd/New_Mela_Ramanputhur_Holy_Family_Church.jpg"
-      />
-    ),
+    media: mediaNode,
   },
 
   sections: [
@@ -49,7 +51,16 @@ export default {
       issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
       sourceUrl:
         'https://github.com/wix/wix-style-react/tree/master/src/SocialPreview/',
-      component: <SocialPreview media={<ImageViewer />} />,
+      component: (
+        <Box width="340px" pointerEvents="none">
+          <SocialPreview
+            title="Social Preview"
+            previewUrl="http://www.wix-wix-style-react.surge.sh"
+            description="Wix's UI component library"
+            media={mediaNode}
+          />
+        </Box>
+      ),
     }),
 
     tabs([
@@ -59,7 +70,7 @@ export default {
           columns([
             description({
               title: 'Description',
-              text: 'A displayer for social post.',
+              text: 'A common display unit for social posts',
             }),
           ]),
 
@@ -72,20 +83,10 @@ export default {
           divider(),
 
           code({
-            title: 'Full Interactive Preview',
-            description: 'A non compact version of same code example as above',
-            source: `<SocialPreview 
-                        title='Site Name | a title of you site'
-                        description='A short description for a site' 
-                        previewUrl='www.site-name.com'
-                        media = <ImageViewer 
-                                            width="100%" 
-                                            height="100%" 
-                                            dataHook="socialPreview-imageViewer" 
-                                            imageUrl="https://upload.wikimedia.org/wikipedia/commons/d/dd/New_Mela_Ramanputhur_Holy_Family_Church.jpg"
-                                  />
-                                
-                      />;`,
+            title: 'Basic example',
+            description:
+              'A SocialPreview component will usually contain a media ImageViewer component',
+            source: BasicExampleRaw,
           }),
         ],
       }),
