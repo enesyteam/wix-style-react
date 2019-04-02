@@ -29,6 +29,7 @@ const mediaNode = (
     width="100%"
     height="100%"
     imageUrl="https://upload.wikimedia.org/wikipedia/commons/d/dd/New_Mela_Ramanputhur_Holy_Family_Church.jpg"
+    removeRoundedBorders
   />
 );
 
