@@ -1,6 +1,6 @@
 :import {
   -st-from: "wix-ui-core/index.st.css";
-  -st-named: Popover;
+  -st-named: Tooltip;
 }
 
 :import {
@@ -23,7 +23,7 @@
 }
 
 .root {
-  -st-extends: Popover;
+  -st-extends: Tooltip;
 }
 
 .root[data-hook*="popover-portal"] {
