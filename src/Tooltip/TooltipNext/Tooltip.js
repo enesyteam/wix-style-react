@@ -29,7 +29,7 @@ class Tooltip extends React.PureComponent {
     /** tooltips delay on hide event */
     exitDelay: PropTypes.number,
     /** tooltips content relation to a dom element */
-    appendTo: PropTypes.string,
+    appendTo: PropTypes.oneOf(['window', 'scrollParent', 'viewport', 'parent']),
     /** tooltip content container width in pixels */
     maxWidth: PropTypes.number,
     /** callback on tooltips content show event */

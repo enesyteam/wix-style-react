@@ -29,5 +29,15 @@ describe('Tooltip', () => {
 
       expect(await driver.getTooltipText()).toBe('string');
     });
+    it('should render string inside tooltip element [when] react element is given', async () => {
+      const onShow = jest.fn();
+      const { driver } = render(
+        <Tooltip onShow={onShow} content={<div>string</div>}>
+          {children}
+        </Tooltip>
+      );
+
+      expect(await driver.getTooltipText()).toBe('string');
+    });
   });
 });
