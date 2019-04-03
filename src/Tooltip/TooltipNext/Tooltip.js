@@ -38,8 +38,8 @@ class Tooltip extends React.PureComponent {
     onHide: PropTypes.func,
     /** tooltip content placement in relation to target element */
     placement: PropTypes.string,
-    /** to enable or disable arrow */
-    showArrow: PropTypes.bool,
+    /** sets size of the tooltip */
+    size: PropTypes.oneOf(['small', 'medium']),
   };
 
   static defaultProps = {
@@ -51,6 +51,7 @@ class Tooltip extends React.PureComponent {
     exitDelay: 0,
     maxWidth: 204,
     textAlign: 'center',
+    size: 'medium',
     zIndex: ZIndex('Tooltip'),
   };
 
@@ -79,14 +80,16 @@ class Tooltip extends React.PureComponent {
       children,
       content,
       maxWidth,
+      size,
       ...rest
     } = this.props;
     return (
       <CoreTooltip
         {...rest}
-        {...styles('root', {}, this.props)}
+        {...styles('root', { size }, this.props)}
         timeout={{ enter: enterDelay, exit: exitDelay }}
         content={this._renderContent()}
+        showArrow={size === 'small' ? false : true}
       >
         {children}
       </CoreTooltip>
