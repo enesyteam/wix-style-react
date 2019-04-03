@@ -12,8 +12,6 @@ import styles from './Tooltip.st.css';
 class Tooltip extends React.PureComponent {
   static displayName = 'Tooltip';
 
-  state = { isOpen: false };
-
   static propTypes = {
     /** applied as data-hook HTML attribute that can be used to create driver in testing */
     dataHook: PropTypes.string,
@@ -39,13 +37,14 @@ class Tooltip extends React.PureComponent {
     placement: PropTypes.string,
     /** sets size of the tooltip */
     size: PropTypes.oneOf(['small', 'medium']),
+    /** set different zIndex */
+    zIndex: PropTypes.number,
   };
 
   static defaultProps = {
     content: '',
     appendTo: 'parent',
     placement: 'top',
-    showArrow: true,
     enterDelay: 200,
     exitDelay: 0,
     maxWidth: 204,
@@ -57,19 +56,17 @@ class Tooltip extends React.PureComponent {
   _renderContent = () => {
     const { content, maxWidth, zIndex, textAlign } = this.props;
 
-    const style = { maxWidth: `${maxWidth}px`, zIndex, textAlign };
-    const Container = ({ children }) => <div style={style}>{children}</div>;
-
-    const text = (
-      <Container>
-        <Text dataHook="tooltip-text" size="small" weight="normal" light>
-          {content}
-        </Text>
-      </Container>
+    return (
+      <div style={{ maxWidth, zIndex, textAlign }}>
+        {typeof content === 'string' ? (
+          <Text dataHook="tooltip-text" size="small" weight="normal" light>
+            {content}
+          </Text>
+        ) : (
+          content
+        )}
+      </div>
     );
-    const node = <Container>{content}</Container>;
-
-    return typeof content === 'string' ? text : node;
   };
 
   render() {

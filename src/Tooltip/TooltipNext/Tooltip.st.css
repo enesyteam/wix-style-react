@@ -1,6 +1,6 @@
 :import {
   -st-from: "wix-ui-core/index.st.css";
--st-named: Tooltip;
+  -st-named: Tooltip;
 }
 
 :import {
@@ -51,7 +51,6 @@
   background: value(D10);
 }
 
-
 .root:size(small)::popoverContent {
   border: none;
 
@@ -90,8 +89,8 @@
   margin: 0;
 }
 
-
 /* Right side */
+
 .root:size(small)::popover[data-placement*="right"]::arrow  {
     display: none;
 }
@@ -126,6 +125,7 @@
 }
 
 /* Top arrow */
+
 .root:size(small)::popover[data-placement*="top"]::arrow  {
   display: none;
 }
@@ -143,6 +143,7 @@
 }
 
 /* Bottom arrow */
+
 .root:size(small)::popover[data-placement*="bottom"]::arrow {
   display: none;
 }
@@ -158,4 +159,3 @@
   margin-left: value(contentArrowSize);
   margin-right: value(contentArrowSize);
 }
-
