@@ -1,5 +1,4 @@
 import { tooltipDriverFactory as tooltipDriverFactoryCore } from 'wix-ui-core/dist/src/components/Tooltip/Tooltip.uni.driver';
-import { textUniDriverFactory } from '../../Text/Text.uni.driver';
 
 export const tooltipDriverFactory = (base, body) => {
   const testkit = tooltipDriverFactoryCore(base, body);
@@ -13,14 +12,6 @@ export const tooltipDriverFactory = (base, body) => {
     /** mouse leaves the target element */
     mouseLeave: async () => await testkit.mouseLeave(),
     /** returns tooltips content value in string */
-    getTooltipText: async () => {
-      await testkit.mouseEnter();
-      const text = await textUniDriverFactory(
-        body.$('[data-hook="tooltip-text"]')
-      ).getText();
-      // this makes sure that test is cleaning up after
-      await testkit.mouseLeave();
-      return text;
-    },
+    getTooltipText: async () => await testkit.getTooltipText(),
   };
 };
