@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Tooltip as CoreTooltip } from 'wix-ui-core/tooltip';
+
+import { ZIndex } from '../../ZIndex';
 import Text from '../../Text';
 import styles from './Tooltip.st.css';
 
@@ -20,6 +22,8 @@ class Tooltip extends React.PureComponent {
     children: PropTypes.node.isRequired,
     /** tooltip content. Can be either string or renderable node */
     content: PropTypes.node,
+    /** align tooltip content */
+    textAlign: PropTypes.oneOf(['center', 'start']),
     /** tooltips delay on show event */
     enterDelay: PropTypes.number,
     /** tooltips delay on hide event */
@@ -46,24 +50,25 @@ class Tooltip extends React.PureComponent {
     enterDelay: 200,
     exitDelay: 0,
     maxWidth: 204,
+    textAlign: 'center',
+    zIndex: ZIndex('Tooltip'),
   };
 
-  renderContent = () => {
-    const { content, maxWidth } = this.props;
+  _renderContent = () => {
+    const { content, maxWidth, zIndex, textAlign } = this.props;
+
+    const style = { maxWidth: `${maxWidth}px`, zIndex, textAlign };
+    const Container = ({ children }) => <div style={style}>{children}</div>;
 
     const text = (
-      <div style={{ maxWidth: `${maxWidth}px` }}>
+      <Container>
         <Text dataHook="tooltip-text" size="small" weight="normal" light>
           {content}
         </Text>
-      </div>
+      </Container>
     );
+    const node = <Container>{content}</Container>;
 
-    const node = (
-      <div data-hook="tooltip-node" style={{ maxWidth: `${maxWidth}px` }}>
-        {content}
-      </div>
-    );
     return typeof content === 'string' ? text : node;
   };
 
@@ -81,7 +86,7 @@ class Tooltip extends React.PureComponent {
         {...rest}
         {...styles('root', {}, this.props)}
         timeout={{ enter: enterDelay, exit: exitDelay }}
-        content={this.renderContent()}
+        content={this._renderContent()}
       >
         {children}
       </CoreTooltip>

@@ -18,7 +18,10 @@ import { storySettings } from '../test/storySettings';
 
 import Tooltip from '..';
 import TextButton from '../../../TextButton';
+import Text from '../../../Text';
+import AddItem from '../../../AddItem';
 
+import { placements } from '../../../Popover/Popover';
 import { baseScope } from '../../../../stories/utils/LiveCodeExample';
 import usage from '!raw-loader!./Usage.md';
 import * as examples from './examples';
@@ -49,6 +52,27 @@ export default {
     appendTo: 'window',
     placement: 'top',
     showArrow: true,
+    textAlign: 'center',
+  },
+
+  exampleProps: {
+    appendTo: ['window', 'scrollParent', 'viewport', 'parent'],
+    textAlign: ['start', 'center'],
+    placement: placements,
+    children: [
+      {
+        label: `TextButton`,
+        value: <TextButton>Hover me</TextButton>,
+      },
+      {
+        label: `Text`,
+        value: <Text>Long story short</Text>,
+      },
+      {
+        label: `AddItem`,
+        value: <AddItem>Hover me</AddItem>,
+      },
+    ],
   },
 
   sections: [
@@ -101,7 +125,6 @@ export default {
           ...[
             {
               title: 'Plain Example',
-              text: 'Bla bla bla',
               source: examples.basic,
             },
           ].map(example),
