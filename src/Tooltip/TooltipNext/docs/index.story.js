@@ -47,17 +47,19 @@ export default {
   componentPath: '..',
 
   componentProps: {
-    children: <TextButton skin="dark">Hover me</TextButton>,
+    children: <TextButton>Hover me</TextButton>,
     content: 'Enter your postal code, so postman can easier send you a mail.',
     appendTo: 'window',
     placement: 'top',
     showArrow: true,
     textAlign: 'center',
+    size: 'medium',
   },
 
   exampleProps: {
     appendTo: ['window', 'scrollParent', 'viewport', 'parent'],
     textAlign: ['start', 'center'],
+    size: ['small', 'medium'],
     placement: placements,
     children: [
       {

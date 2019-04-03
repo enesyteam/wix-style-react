@@ -90,8 +90,11 @@
   margin: 0;
 }
 
+
 /* Right side */
-.root:size(small)::popover[data-placement*="right"],
+.root:size(small)::popover[data-placement*="right"]::arrow  {
+    display: none;
+}
 .root::popover[data-placement*="right"].root::withArrow {
   padding-left: calc(value(contentArrowSize) - 2);
 }
@@ -106,7 +109,10 @@
 
 /* Left side */
 
-.root:size(small)::popover[data-placement*="left"],
+.root:size(small)::popover[data-placement*="left"]::arrow  {
+  display: none;
+}
+
 .root::popover[data-placement*="left"].root::withArrow {
   padding-right: calc(value(contentArrowSize) - 2);
 }
@@ -120,21 +126,27 @@
 }
 
 /* Top arrow */
-.root:size(small)::popover[data-placement*="top"],
+.root:size(small)::popover[data-placement*="top"]::arrow  {
+  display: none;
+}
+
 .root::popover[data-placement*="top"].root::withArrow {
   padding-bottom: calc(value(contentArrowSize) - 2);
 }
 
 .root::popover[data-placement*="top"]::arrow {
   transform: rotateZ(45deg);
-  bottom: calc(value(contentArrowSize) / 2 - 4);
+  bottom: calc(value(contentArrowSize) / 2 - 2);
 
   margin-left: value(contentArrowSize);
   margin-right: value(contentArrowSize);
 }
 
 /* Bottom arrow */
-.root:size(small)::popover[data-placement*="bottom"],
+.root:size(small)::popover[data-placement*="bottom"]::arrow {
+  display: none;
+}
+
 .root::popover[data-placement*="bottom"].root::withArrow {
   padding-top: calc(value(contentArrowSize) - 2);
 }

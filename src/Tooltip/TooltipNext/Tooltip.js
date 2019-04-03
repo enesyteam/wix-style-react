@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import { Tooltip as CoreTooltip } from 'wix-ui-core/tooltip';
 
-import { ZIndex } from '../../ZIndex';
 import Text from '../../Text';
 import styles from './Tooltip.st.css';
 
@@ -52,7 +51,7 @@ class Tooltip extends React.PureComponent {
     maxWidth: 204,
     textAlign: 'center',
     size: 'medium',
-    zIndex: ZIndex('Tooltip'),
+    zIndex: 2000,
   };
 
   _renderContent = () => {
@@ -89,7 +88,7 @@ class Tooltip extends React.PureComponent {
         {...styles('root', { size }, this.props)}
         timeout={{ enter: enterDelay, exit: exitDelay }}
         content={this._renderContent()}
-        showArrow={size === 'small' ? false : true}
+        showArrow
       >
         {children}
       </CoreTooltip>
