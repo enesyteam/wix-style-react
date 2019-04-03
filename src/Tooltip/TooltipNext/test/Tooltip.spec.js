@@ -24,7 +24,7 @@ describe('Tooltip', () => {
       const { driver } = render(
         <Tooltip onShow={onShow} content="string">
           {children}
-        </Tooltip>
+        </Tooltip>,
       );
 
       expect(await driver.getTooltipText()).toBe('string');
@@ -34,7 +34,7 @@ describe('Tooltip', () => {
       const { driver } = render(
         <Tooltip onShow={onShow} content={<div>string</div>}>
           {children}
-        </Tooltip>
+        </Tooltip>,
       );
 
       expect(await driver.getTooltipText()).toBe('string');
