@@ -1,4 +1,4 @@
-import { tooltipDriverFactory as tooltipDriverFactoryCore } from 'wix-ui-core/dist/src/components/Tooltip/Tooltip.uni.driver';
+import { tooltipDriverFactory as tooltipDriverFactoryCore } from 'wix-ui-core/dist/src/components/tooltip/Tooltip.uni.driver';
 
 export const tooltipDriverFactory = (base, body) => {
   const testkit = tooltipDriverFactoryCore(base, body);
