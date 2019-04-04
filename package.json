@@ -26,8 +26,8 @@
   "scripts": {
     "start": "./scripts/npm-start.sh",
     "precommit": "lint-staged",
-    "pretest": "npm run lint && ./scripts/ensure-dist.sh",
-    "test": "npm ls wix-ui-core && npm run test:unit && npm run test:eyes-storybook && npm run test:e2e",
+    "pretest": "ls -l ./node_modules/wix-ui-core/dist/src/components/Tooltip && npm run lint && ./scripts/ensure-dist.sh",
+    "test": "npm run test:unit && npm run test:eyes-storybook && npm run test:e2e",
     "test:unit": "yoshi test --jest",
     "test:watch": "yoshi test --jest --watch",
     "pretest:e2e": "./scripts/ensure-dist.sh",
