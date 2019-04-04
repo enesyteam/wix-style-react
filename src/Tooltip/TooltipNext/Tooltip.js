@@ -53,6 +53,7 @@ class Tooltip extends React.PureComponent {
     exitDelay: 0,
     maxWidth: 204,
     flip: true,
+    fixed: false,
     textAlign: 'center',
     size: 'medium',
     zIndex: 6000,
@@ -88,8 +89,9 @@ class Tooltip extends React.PureComponent {
       <CoreTooltip
         {...rest}
         {...styles('root', { size }, this.props)}
-        timeout={{ enter: enterDelay, exit: exitDelay }}
         content={this._renderContent()}
+        hideDelay={exitDelay}
+        showDelay={enterDelay}
         showArrow
       >
         {children}

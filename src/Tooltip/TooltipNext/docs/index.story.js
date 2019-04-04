@@ -51,7 +51,6 @@ export default {
     content: 'Enter your postal code, so postman can easier send you a mail.',
     appendTo: 'window',
     placement: 'top',
-    showArrow: true,
     textAlign: 'center',
     size: 'medium',
   },
@@ -133,8 +132,13 @@ export default {
             {
               title: 'Placement',
               text:
-                'Tooltips have four standard placements available; `top`, `right`, `bottom`, and `left`. Each standard position center-aligns itself along the appropriate axis and appears outside the target element.',
+                'Tooltips have four standard placements available: `top`, `right`, `bottom`, and `left`. Each standard position center-aligns itself along the appropriate axis and appears outside the target element.',
               source: examples.placements,
+            },
+            {
+              title: 'Delay',
+              text: `Time in milliseconds to wait before showing and hiding the tooltip`,
+              source: examples.delay,
             },
           ].map(example),
         ],
