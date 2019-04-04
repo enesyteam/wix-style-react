@@ -137,8 +137,14 @@ export default {
             },
             {
               title: 'Delay',
-              text: `Time in milliseconds to wait before showing and hiding the tooltip`,
+              text:
+                'Time in milliseconds to wait before showing or hiding the tooltip. Controlled by props `enterDelay` or `exitDelay`.',
               source: examples.delay,
+            },
+            {
+              title: 'Size',
+              text: 'Tooltip supports two sizes: `small` and `medium`.',
+              source: examples.size,
             },
           ].map(example),
         ],

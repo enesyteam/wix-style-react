@@ -51,8 +51,19 @@ class PlacementExample extends React.Component {
 
 export const delay = `
 <Layout cols={1} justifyItems="center">
-  <TooltipNext enterDelay={300} appendTo="window" content="Enter your postal code, so postman can easier send you a mail.">
-    <Text>Hover me (Text)</Text>
+  <TooltipNext enterDelay={300} exitDelay={300} appendTo="window" content="Enter your postal code, so postman can easier send you a mail.">
+    <Text>Hover me</Text>
+  </TooltipNext>
+</Layout>
+`;
+
+export const size = `
+<Layout cols={2} justifyItems="center">
+  <TooltipNext size="small" appendTo="window" content="Enter your postal code, so postman can easier send you a mail.">
+    <Text>small</Text>
+  </TooltipNext>
+  <TooltipNext size="medium" appendTo="window" content="Enter your postal code, so postman can easier send you a mail.">
+    <Text>medium (default)</Text>
   </TooltipNext>
 </Layout>
 `;
