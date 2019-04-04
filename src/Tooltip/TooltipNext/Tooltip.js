@@ -27,6 +27,10 @@ class Tooltip extends React.PureComponent {
     exitDelay: PropTypes.number,
     /** tooltips content relation to a dom element */
     appendTo: PropTypes.oneOf(['window', 'scrollParent', 'viewport', 'parent']),
+    /** whether to enable the flip behaviour. This behaviour is used to flip the Tooltips placement when it starts to overlap the target element. */
+    flip: PropTypes.bool,
+    /** whether to enable the fixed behaviour. This behaviour is used to keep the Tooltip at it's original placement even when it's being positioned outside the boundary. */
+    fixed: PropTypes.bool,
     /** tooltip content container width in pixels */
     maxWidth: PropTypes.number,
     /** callback on tooltips content show event */
@@ -48,9 +52,10 @@ class Tooltip extends React.PureComponent {
     enterDelay: 200,
     exitDelay: 0,
     maxWidth: 204,
+    flip: true,
     textAlign: 'center',
     size: 'medium',
-    zIndex: 2000,
+    zIndex: 6000,
   };
 
   _renderContent = () => {
