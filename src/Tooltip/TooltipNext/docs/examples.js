@@ -1,17 +1,17 @@
 export const simple = `
-<Tooltip content="Enter your postal code">
+<Tooltip upgrade content="Enter your postal code">
   <TextButton skin="dark">Hover me</TextButton>
 </Tooltip>
 `;
 
 export const basic = `
 <Layout cols={2} justifyItems="center">
-  <TooltipNext appendTo="window" content="Enter your postal code, so postman can easier send you a mail.">
+  <Tooltip upgrade appendTo="window" content="Enter your postal code, so postman can easier send you a mail.">
     <TextButton>Hover me (TextButton)</TextButton>
-  </TooltipNext>
-  <TooltipNext appendTo="window" content="Enter your postal code, so postman can easier send you a mail.">
+  </Tooltip>
+  <Tooltip upgrade appendTo="window" content="Enter your postal code, so postman can easier send you a mail.">
     <Text>Hover me (Text)</Text>
-  </TooltipNext>
+  </Tooltip>
 </Layout>
 `;
 
@@ -40,9 +40,9 @@ class PlacementExample extends React.Component {
     const placement = this.VALID_PLACEMENTS[this.state.placement];
     return (
       <Layout cols={1} justifyItems="center">
-        <TooltipNext content={placement} placement={placement} appendTo="window">
+        <Tooltip upgrade content={placement} placement={placement} appendTo="window">
           <TextButton onClick={this.changeDirection}>Click me</TextButton>
-        </TooltipNext>
+        </Tooltip>
       </Layout>
     );
   }
@@ -51,19 +51,19 @@ class PlacementExample extends React.Component {
 
 export const delay = `
 <Layout cols={1} justifyItems="center">
-  <TooltipNext enterDelay={300} exitDelay={300} appendTo="window" content="Enter your postal code, so postman can easier send you a mail.">
+  <Tooltip upgrade enterDelay={300} exitDelay={300} appendTo="window" content="Enter your postal code, so postman can easier send you a mail.">
     <Text>Hover me</Text>
-  </TooltipNext>
+  </Tooltip>
 </Layout>
 `;
 
 export const size = `
 <Layout cols={2} justifyItems="center">
-  <TooltipNext size="small" appendTo="window" content="Enter your postal code, so postman can easier send you a mail.">
+  <Tooltip upgrade size="small" appendTo="window" content="Enter your postal code, so postman can easier send you a mail.">
     <Text>small</Text>
-  </TooltipNext>
-  <TooltipNext size="medium" appendTo="window" content="Enter your postal code, so postman can easier send you a mail.">
+  </Tooltip>
+  <Tooltip upgrade size="medium" appendTo="window" content="Enter your postal code, so postman can easier send you a mail.">
     <Text>medium (default)</Text>
-  </TooltipNext>
+  </Tooltip>
 </Layout>
 `;
