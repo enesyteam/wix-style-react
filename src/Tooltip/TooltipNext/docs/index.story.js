@@ -127,7 +127,14 @@ export default {
           ...[
             {
               title: 'Plain Example',
+              text: 'Plain example of how to use tooltip.',
               source: examples.basic,
+            },
+            {
+              title: 'Placement',
+              text:
+                'Tooltips have four standard placements available; `top`, `right`, `bottom`, and `left`. Each standard position center-aligns itself along the appropriate axis and appears outside the target element.',
+              source: examples.placements,
             },
           ].map(example),
         ],
