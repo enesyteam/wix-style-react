@@ -147,6 +147,58 @@ export default {
               source: examples.size,
             },
           ].map(example),
+
+          title('Floating Behaviour'),
+
+          columns([
+            liveCode({
+              title: 'Flip: Enabled (default) & Fixed: Disabled (default)',
+              subtitle:
+                'Focus target element and scroll viewport to see behaviour',
+              source: examples.flip,
+            }),
+            liveCode({
+              title: 'Flip: Disabled & Fixed: Disabled (default)',
+              subtitle:
+                'Focus target element and scroll viewport to see behaviour',
+              source: examples.flipnot,
+            }),
+          ]),
+          columns([
+            liveCode({
+              title: 'Fixed: Enabled & Flip: Enabled (default)',
+              subtitle:
+                'Focus target element and scroll viewport to see behaviour',
+              source: examples.fixed,
+            }),
+          ]),
+
+          title('Attachement to DOM'),
+
+          columns([
+            liveCode({
+              title: 'Append to: parent',
+              subtitle: `If you inspect the content, you'll see it is attached to a new div next to the target element.`,
+              source: examples.parent,
+            }),
+            liveCode({
+              title: 'Append to: window',
+              subtitle: `If you inspect the content, you'll see it is attached to a new <div/> under the body.`,
+              source: examples.window,
+            }),
+          ]),
+          columns([
+            liveCode({
+              title: 'Append to: viewport',
+              subtitle: `This is similar to window as it also appends the content to a new <div/> under the body, but also set its boundry to the viewport.`,
+              source: examples.viewport,
+            }),
+            liveCode({
+              title: 'Append to: scrollparent',
+              subtitle: `If you inspect the content, you'll see it is attached to a new div under the list container.`,
+              source: examples.scrollParent,
+            }),
+          ]),
         ],
       }),
 
