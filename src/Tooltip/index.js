@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import hoistNonReactMethods from 'hoist-non-react-methods';
 import PropTypes from 'prop-types';
 
 import TooltipNew from './TooltipNext';
@@ -16,4 +17,4 @@ class Tooltip extends Component {
 
 Tooltip.displayName = 'Tooltip';
 
-export default Tooltip;
+export default hoistNonReactMethods(TooltipOld, Tooltip);
