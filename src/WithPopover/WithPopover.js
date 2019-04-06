@@ -130,7 +130,7 @@ class WithPopover extends WixComponent {
         onHide={this.props.onHide}
         moveBy={this.props.moveBy}
       >
-        { element }
+        {element}
       </Tooltip>
     );
   }
