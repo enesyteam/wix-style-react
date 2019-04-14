@@ -1,31 +1,37 @@
 $fonts-fallback: "Helvetica Neue", "Helvetica", "Arial", "メイリオ, meiryo", "ヒラギノ角ゴ pro w3", "hiragino kaku gothic pro", "sans-serif";
 
-$FontUltraThin: "HelveticaNeueW01-UltLt", "HelveticaNeueW02-UltLt", "HelveticaNeueW10-25UltL", $fonts-fallback;
-$FontThin: "HelveticaNeueW01-Thin", "HelveticaNeueW02-Thin", "HelveticaNeueW10-35Thin", $fonts-fallback;
-$FontLight: "HelveticaNeueW01-45Ligh", "HelveticaNeueW02-45Ligh", "HelveticaNeueW10-45Ligh", $fonts-fallback;
-$FontRoman: "HelveticaNeueW01-55Roma", "HelveticaNeueW02-55Roma", "HelveticaNeueW10-55Roma", $fonts-fallback;
-$FontMedium: "HelveticaNeueW01-65Medi", "HelveticaNeueW02-65Medi", "HelveticaNeueW10-65Medi", $fonts-fallback;
-$FontBold: "HelveticaNeueW01-75Bold", "HelveticaNeueW02-75Bold", "HelveticaNeueW10-75Bold", $fonts-fallback;
+$FontUltraThin: "Papo-Lato", $fonts-fallback;
+$FontThin: "Papo-Lato", $fonts-fallback;
+$FontLight: "Papo-Lato", $fonts-fallback;
+$FontRoman: "Papo-Lato", $fonts-fallback;
+$FontMedium: "Papo-Lato", $fonts-fallback;
+$FontBold: "Papo-Lato", $fonts-fallback;
 
 @mixin FontUltraThin() {
   font-family: $FontUltraThin;
+  font-weight: 300;
 }
 
 @mixin FontThin() {
   font-family: $FontThin;
+  font-weight: 300;
 }
 @mixin FontLight() {
   font-family: $FontLight;
+  font-weight: 300;
 }
 
 @mixin FontRoman() {
   font-family: $FontRoman;
+  font-weight: 400;
 }
 
 @mixin FontMedium() {
   font-family: $FontMedium;
+  font-weight: 700;
 }
 
 @mixin FontBold() {
   font-family: $FontBold;
+  font-weight: 900;
 }
